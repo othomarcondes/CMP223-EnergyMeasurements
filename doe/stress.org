@@ -1,0 +1,85 @@
+#+title: Phase 2 Stress
+* Phase 2 Stress
+Preliminary experiments with the stress package on the Tupi partition.
+Changing:
+- CPU
+- I/O
+- Memory
+
+#+begin_src R
+options(crayon.enabled=FALSE)
+library(DoE.base)
+library(tidyverse)
+
+fator_time   <- c("10m", "30m")
+fator_nodes  <- 1:2
+
+# allowed levels
+fator_cpu    <- c(0, 8, 12, 24)
+fator_io     <- c(0, 8, 12, 24)
+fator_memory <- c(0, 8, 12, 24)
+
+job_name     <- "stress_tupi"
+
+# full factorial
+fac.design(nfactors = 5,
+    replications=1,
+    repeat.only = FALSE,
+    randomize=TRUE,
+    seed=0,
+    nlevels  = c(length(fator_time),
+                length(fator_cpu),
+                length(fator_io),
+                length(fator_memory),
+                length(fator_nodes)),
+    factor.names = list(
+        time   = fator_time,
+        cpu    = fator_cpu,
+        io     = fator_io,
+        memory = fator_memory,
+        nodes  = fator_nodes
+    )) |>
+  as_tibble() |>
+  mutate(across(c(cpu, io, memory), ~ as.numeric(as.character(.)))) |>
+  filter(cpu + io + memory == 24) |>
+  mutate(exp   = job_name) |>
+  mutate(Order = paste0(exp,
+                        "_", time,
+                        "_CPU", cpu,
+                        "_IO", io,
+                        "_MEM", memory,
+                        "_N", nodes,
+                        "_", 1:n())) |>
+  write_csv(paste0(job_name, "_experimental_project.csv"), progress = FALSE) |>
+  print()
+#+end_src
+
+#+RESULTS:
+| 10m |  8 |  8 |  8 | 1 | stress_tupi | stress_tupi_10m_CPU8_IO8_MEM8_N1_1    |
+| 30m |  0 | 12 | 12 | 2 | stress_tupi | stress_tupi_30m_CPU0_IO12_MEM12_N2_2  |
+| 10m |  0 |  0 | 24 | 2 | stress_tupi | stress_tupi_10m_CPU0_IO0_MEM24_N2_3   |
+| 10m | 12 | 12 |  0 | 1 | stress_tupi | stress_tupi_10m_CPU12_IO12_MEM0_N1_4  |
+| 10m | 24 |  0 |  0 | 1 | stress_tupi | stress_tupi_10m_CPU24_IO0_MEM0_N1_5   |
+| 30m |  8 |  8 |  8 | 2 | stress_tupi | stress_tupi_30m_CPU8_IO8_MEM8_N2_6    |
+| 30m | 12 |  0 | 12 | 1 | stress_tupi | stress_tupi_30m_CPU12_IO0_MEM12_N1_7  |
+| 30m |  8 |  8 |  8 | 1 | stress_tupi | stress_tupi_30m_CPU8_IO8_MEM8_N1_8    |
+| 10m |  0 | 12 | 12 | 2 | stress_tupi | stress_tupi_10m_CPU0_IO12_MEM12_N2_9  |
+| 10m |  0 | 24 |  0 | 1 | stress_tupi | stress_tupi_10m_CPU0_IO24_MEM0_N1_10  |
+| 30m | 12 |  0 | 12 | 2 | stress_tupi | stress_tupi_30m_CPU12_IO0_MEM12_N2_11 |
+| 30m | 12 | 12 |  0 | 1 | stress_tupi | stress_tupi_30m_CPU12_IO12_MEM0_N1_12 |
+| 30m | 12 | 12 |  0 | 2 | stress_tupi | stress_tupi_30m_CPU12_IO12_MEM0_N2_13 |
+| 10m | 12 | 12 |  0 | 2 | stress_tupi | stress_tupi_10m_CPU12_IO12_MEM0_N2_14 |
+| 30m |  0 | 24 |  0 | 1 | stress_tupi | stress_tupi_30m_CPU0_IO24_MEM0_N1_15  |
+| 10m |  8 |  8 |  8 | 2 | stress_tupi | stress_tupi_10m_CPU8_IO8_MEM8_N2_16   |
+| 30m |  0 |  0 | 24 | 1 | stress_tupi | stress_tupi_30m_CPU0_IO0_MEM24_N1_17  |
+| 30m | 24 |  0 |  0 | 1 | stress_tupi | stress_tupi_30m_CPU24_IO0_MEM0_N1_18  |
+| 10m | 12 |  0 | 12 | 1 | stress_tupi | stress_tupi_10m_CPU12_IO0_MEM12_N1_19 |
+| 10m | 24 |  0 |  0 | 2 | stress_tupi | stress_tupi_10m_CPU24_IO0_MEM0_N2_20  |
+| 30m | 24 |  0 |  0 | 2 | stress_tupi | stress_tupi_30m_CPU24_IO0_MEM0_N2_21  |
+| 10m | 12 |  0 | 12 | 2 | stress_tupi | stress_tupi_10m_CPU12_IO0_MEM12_N2_22 |
+| 30m |  0 |  0 | 24 | 2 | stress_tupi | stress_tupi_30m_CPU0_IO0_MEM24_N2_23  |
+| 10m |  0 | 12 | 12 | 1 | stress_tupi | stress_tupi_10m_CPU0_IO12_MEM12_N1_24 |
+| 10m |  0 | 24 |  0 | 2 | stress_tupi | stress_tupi_10m_CPU0_IO24_MEM0_N2_25  |
+| 30m |  0 | 24 |  0 | 2 | stress_tupi | stress_tupi_30m_CPU0_IO24_MEM0_N2_26  |
+| 30m |  0 | 12 | 12 | 1 | stress_tupi | stress_tupi_30m_CPU0_IO12_MEM12_N1_27 |
+| 10m |  0 |  0 | 24 | 1 | stress_tupi | stress_tupi_10m_CPU0_IO0_MEM24_N1_28  |
