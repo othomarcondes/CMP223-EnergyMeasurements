@@ -1,0 +1,17 @@
+size,block_size,scheduler,pq,gpu,nodes,exp,Order
+64000,400,lws,1x4,0,2,lu_factor_tupi,lu_factor_tupi_64000_2_GPU0_1
+16000,400,lws,1x4,0,1,lu_factor_tupi,lu_factor_tupi_16000_1_GPU0_2
+32000,400,lws,1x4,0,2,lu_factor_tupi,lu_factor_tupi_32000_2_GPU0_3
+96000,400,lws,1x4,0,1,lu_factor_tupi,lu_factor_tupi_96000_1_GPU0_4
+64000,400,lws,1x4,0,1,lu_factor_tupi,lu_factor_tupi_64000_1_GPU0_5
+96000,400,lws,1x4,1,2,lu_factor_tupi,lu_factor_tupi_96000_2_GPU1_6
+16000,400,lws,1x4,1,1,lu_factor_tupi,lu_factor_tupi_16000_1_GPU1_7
+96000,400,lws,1x4,0,2,lu_factor_tupi,lu_factor_tupi_96000_2_GPU0_8
+16000,400,lws,1x4,1,2,lu_factor_tupi,lu_factor_tupi_16000_2_GPU1_9
+32000,400,lws,1x4,0,1,lu_factor_tupi,lu_factor_tupi_32000_1_GPU0_10
+96000,400,lws,1x4,1,1,lu_factor_tupi,lu_factor_tupi_96000_1_GPU1_11
+64000,400,lws,1x4,1,2,lu_factor_tupi,lu_factor_tupi_64000_2_GPU1_12
+32000,400,lws,1x4,1,2,lu_factor_tupi,lu_factor_tupi_32000_2_GPU1_13
+64000,400,lws,1x4,1,1,lu_factor_tupi,lu_factor_tupi_64000_1_GPU1_14
+16000,400,lws,1x4,0,2,lu_factor_tupi,lu_factor_tupi_16000_2_GPU0_15
+32000,400,lws,1x4,1,1,lu_factor_tupi,lu_factor_tupi_32000_1_GPU1_16
