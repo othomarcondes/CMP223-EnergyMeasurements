@@ -158,7 +158,7 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq gpu 
     export STARPU_NCUDA=$gpu
 
     export STARPU_MPI_THREAD_CPUID="0"
-    export STARPU_MAIN_THREAD_CPUID="0"
+    export STARPU_MAIN_THREAD_CPUID="1"
     export STARPU_WORKERS_GETBIND=1
     export STARPU_FXT_PREFIX="./${OUTPUT_DIR}/$order"
     export STARPU_SCHED=$scheduler
