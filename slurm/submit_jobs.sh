@@ -2,7 +2,7 @@
 
 # lista de partições
 partitions=("poti")
-
+../snmp_energy_monitor.sh 123 >> energy_monitor_123.csv &
 # loop sobre cada partição
 for partition in "${partitions[@]}"; do
     sbatch --nodes=$1 --partition=$partition --job-name="stress_${partition}" stress.slurm
