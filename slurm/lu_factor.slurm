@@ -116,6 +116,9 @@ for machine in $(cat $HOSTFILE | cut -d" " -f1); do
 #    ssh $machine 'for i in $(seq 24 47); do echo 0 > /sys/devices/system/cpu/cpu${i}/online; done'
 done
 
+OUT_FILE="$S{SLURM_JOB_NAME}_output.csv"
+echo "size,block_size,scheduler,pq,gpu,nodes,exp,order,start_ts,end_ts" > "$OUT_FILE"
+
 # Skip header and read the rest
 tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq gpu nodes exp order; do
     # Define env vars
@@ -181,7 +184,9 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq gpu 
     STARPU_ENV_VARS+=" -x STARPU_SCHED_BETA"
     STARPU_ENV_VARS+=" -x STARPU_MPI_NDETACHED_SEND"
     STARPU_ENV_VARS+=" -x STARPU_USE_NUMA"
-    
+
+    start_ts=$(date '+%F %T')
+
     $(which mpirun) \
     -n ${SLURM_JOB_NUM_NODES} \
     ${STARPU_ENV_VARS} \
@@ -195,6 +200,9 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq gpu 
     -b $block_size \
     -w  \
     -P $p > ./${OUTPUT_DIR}/$order.out < /dev/null
+
+    end_ts=$(date '+%F %T')
+    echo "$size,$block_size,$scheduler,$pq,$gpu,$nodes,$exp,$order,$start_ts,$end_ts" >> "$OUT_FILE"
 
     if [ "$RASTRO" = 1 ]; then
 	    # Execute StarVZ
