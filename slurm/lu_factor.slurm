@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time=12:00:00
+#SBATCH --time=1-00:00:00
 #SBATCH --output=./%x_%J/%J.out
 #SBATCH --error=./%x_%J/%J.err
 
