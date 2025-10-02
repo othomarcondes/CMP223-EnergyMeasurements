@@ -94,16 +94,16 @@ unset "${!STARPU@}"
 # Read experiments and execute
 CSV_FILE="${SLURM_JOB_NAME}_experimental_project.csv"
 OUTPUT_DIR=${KEY}/output_${KEY}
-mkdir -p ${OUTPUT_DIR} 
+mkdir -p ${OUTPUT_DIR}
 
-rsync ${CSV_FILE} ./${KEY}/ 
+rsync ${CSV_FILE} ./${KEY}/
 
 # Set FxT (traces) variables based on MPI Implementation
 
 OPENMPI_PARAMETERS=""
 # This is necessary to avoid sbatch + mpirun problems
 if [ "$MPI" = "openmpi" ]; then
-    OPENMPI_PARAMETERS="--mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --bind-to none" 
+    OPENMPI_PARAMETERS="--mca plm rsh --mca oob_tcp_if_include eno2 --mca btl_tcp_if_include eno2 --bind-to none"
     export OMPI_MCA_plm=isolated
     srun -l hostname | sort -n | awk '{print $2}' | sed 's/$/ slots=1/' > $HOSTFILE
 fi
@@ -128,14 +128,14 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq gpu 
     if [ "$RASTRO" = 1 ]; then
 	export STARPU_FXT_TRACE=1
     fi
-    
+
     if [[ $(hostname) == cei* ]]; then
 	    export STARPU_NCPU=22
 	    export STARPU_WORKERS_CPUID="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23"
 # POTIS TEM E-CORES e P-CORES
     elif  [[ $(hostname) == poti* ]]; then
-	    export STARPU_NCPU=
-	    export STARPU_WORKERS_CPUID=""
+	    export STARPU_NCPU=18
+	    #export STARPU_WORKERS_CPUID=""
     elif  [[ $(hostname) == hype* ]]; then
 	    export STARPU_NCPU=18
 	    export STARPU_WORKERS_CPUID="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19"
@@ -166,7 +166,7 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq gpu 
     export STARPU_MPI_COOP_SENDS=0
     export STARPU_SCHED_BETA=10
     export STARPU_MPI_NDETACHED_SEND=0
-    export STARPU_USE_NUMA=1
+    export STARPU_USE_NUMA=0
 
 
     STARPU_ENV_VARS=""
@@ -188,7 +188,7 @@ tail -n +2 "$CSV_FILE" | while IFS=',' read -r size block_size scheduler pq gpu 
     start_ts=$(date '+%F %T')
 
     $(which mpirun) \
-    -n ${SLURM_JOB_NUM_NODES} \
+    -n $nodes \
     ${STARPU_ENV_VARS} \
     $OPENMPI_PARAMETERS \
     -machinefile $HOSTFILE \
