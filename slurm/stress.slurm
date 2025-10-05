@@ -32,7 +32,9 @@ cat <<EOF > $GUIX_MANIFEST
 		     (guix packages))
 
 	(packages->manifest
-	  (list (specification->package "stress")))
+	  (list (specification->package "stress")
+		(specification->package "openmpi@4")))
+
 EOF
 
 set +u
@@ -41,7 +43,7 @@ set -u
 
 # Create the hostfile
 HOSTFILE="${KEY}/${SLURM_JOB_ID}.nodes"
-srun -n 1 -l hostname | sort -n | awk '{print $2}' > $HOSTFILE
+srun -l hostname | sort -n | awk '{print $2}' > $HOSTFILE
 
 # Read experiments and execute
 CSV_FILE="${SLURM_JOB_NAME}_experimental_project.csv"
@@ -51,28 +53,49 @@ mkdir -p ${OUTPUT_DIR}
 rsync ${CSV_FILE} ./${KEY}/
 
 # Control experimental parameters
-for machine in $(cat $HOSTFILE | cut -d" " -f1); do
-    ssh $machine 'echo 0 | tee /sys/devices/system/cpu/cpufreq/boost'
-    ssh $machine 'for i in $(seq 0 $(( $(nproc) - 1 ))); do maxf=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq); cpufreq-set -c $i -g performance -d $maxf -u $maxf; done'
+#for machine in $(cat $HOSTFILE | cut -d" " -f1); do
+#    ssh $machine 'echo 0 | tee /sys/devices/system/cpu/cpufreq/boost'
+#    ssh $machine 'for i in $(seq 0 $(( $(nproc) - 1 ))); do maxf=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq); cpufreq-set -c $i -g performance -d $maxf -u $maxf; done'
     # TODO: disable HT cores
 #    ssh $machine 'for i in $(seq 24 47); do echo 0 > /sys/devices/system/cpu/cpu${i}/online; done'
-done
+#done
 
-OUT_FILE="$S{SLURM_JOB_NAME}_output.csv"
+OUT_FILE="${SLURM_JOB_NAME}_output.csv"
 echo "time,cpu,io,memory,nodes,exp,order,start_ts,end_ts" > "$OUT_FILE"
 
 # Skip header and read the rest
-tail -n +2 "$CSV_FILE" | while IFS=',' read -r time cpu io memory nodes exp order; do
-
+while IFS=',' read -r time cpu io memory nodes exp order; do
+    pids=()
     start_ts=$(date '+%F %T')
+    
+    STRESS_PARAMETERS=""
+    ((cpu > 0)) && STRESS_PARAMETERS+=" --cpu $cpu"
+    ((io > 0)) && STRESS_PARAMETERS+=" --io $io"
+    ((memory > 0)) && STRESS_PARAMETERS+=" --vm $memory"
+    STRESS_PARAMETERS+=" --timeout $time"
+
     for machine in $(head -n "$nodes" "$HOSTFILE" | cut -d" " -f1); do
-
-        ssh "$machine" "$(which stress) --cpu $cpu --io $io --vm $memory --timeout $time"
-
+	    ssh "$machine" \
+		    "$(which stress) $STRESS_PARAMETERS" < /dev/null &
+	    pids+=($!)
     done
+	for pid in "${pids[@]}"; do
+	    wait "$pid"
+	done
+
     end_ts=$(date '+%F %T')
     echo "$time,$cpu,$io,$memory,$nodes,$exp,$order,$start_ts,$end_ts" >> "$OUT_FILE"
 
-done
+done < <(tail -n +2 "$CSV_FILE")
 
 echo "End of executions"
+
+# find PID(s) of your monitor script
+monitor_pids=$(ps -u "$USER" -o pid=,cmd= | grep "[s]nmp_energy_monitor.sh" | awk '{print $1}')
+
+echo "Monitor PIDs: $monitor_pids"
+
+# kill them if needed
+for pid in $monitor_pids; do
+    kill "$pid"
+done
