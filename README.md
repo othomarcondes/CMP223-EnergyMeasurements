@@ -41,7 +41,7 @@ Experimental design:
 
 ## Energy measurement script
 
-The measurements are made using SNMP requests directly to the Power Distribution Units (PDUs) supplying energy to the machines. In order to query the SNMP data, the .MIB file supplied by the vendor of the PDU must be available for the SNMP agent in your /home/username/.snmp/mibs directory in the gppd-hpc machine (front). Some additional .mib files are supplied to correct SNMP errors in the output. The files are in the `mibs` directory. You can use scp to place them in the right folder (you'll only have to run this once, before using the script for the first time):
+The measurements are made using SNMP requests directly to the Power Distribution Units (PDUs) supplying energy to the machines. In order to query the SNMP data, the .MIB file supplied by the vendor of the PDU must be available for the SNMP agent in your `/home/user/username/.snmp/mibs` directory in the gppd-hpc machine (front). Some additional .MIB files are supplied to correct SNMP errors in the output. The files are in the `mibs` directory. You can use scp to place them in the right folder (you'll only have to run this once, before using the script for the first time):
 
 ```
 scp mibs/*.mib username@gppd-hpc.inf.ufrgs.br:/home/users/username/.snmp/mibs
