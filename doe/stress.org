@@ -19,7 +19,7 @@ fator_cpu    <- c(0, 8, 12, 24)
 fator_io     <- c(0, 8, 12, 24)
 fator_memory <- c(0, 8, 12, 24)
 
-job_name     <- "stress_poti_1_nodes"
+job_name     <- "stress_poti_5_nodes"
 
 # full factorial
 fac.design(nfactors = 5,
