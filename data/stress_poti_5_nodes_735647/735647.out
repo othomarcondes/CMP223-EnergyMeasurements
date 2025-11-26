@@ -1,0 +1,179 @@
+stress: info: [161258] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [1431737] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [3024692] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [161258] successful run completed in 300s
+stress: info: [161359] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [1431804] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [3024737] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [161359] successful run completed in 300s
+stress: info: [161410] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [3024775] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [1431881] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [1742704] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [3541790] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [161410] successful run completed in 300s
+stress: info: [1742704] successful run completed in 300s
+stress: info: [3541790] successful run completed in 300s
+stress: info: [3541836] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [161461] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [1431940] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [3024817] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [3541836] successful run completed in 300s
+stress: info: [161461] successful run completed in 300s
+stress: info: [1431993] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [1432096] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [161536] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [1432096] successful run completed in 300s
+stress: info: [161536] successful run completed in 300s
+stress: info: [161584] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [1432173] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [161584] successful run completed in 300s
+stress: info: [1432228] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [161634] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [161634] successful run completed in 300s
+stress: info: [1432280] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [1432280] successful run completed in 300s
+stress: info: [161708] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [1432343] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [161708] successful run completed in 300s
+stress: info: [1432343] successful run completed in 300s
+stress: info: [161759] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [3024912] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [1432410] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [161759] successful run completed in 300s
+stress: info: [3024912] successful run completed in 300s
+stress: info: [1432410] successful run completed in 300s
+stress: info: [1432487] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [1432541] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [3024967] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [161817] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [1742814] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [3541946] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [1432602] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [161817] successful run completed in 300s
+stress: info: [1742814] successful run completed in 300s
+stress: info: [3541946] successful run completed in 300s
+stress: info: [161885] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [3025009] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [3541990] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [1432660] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [161885] successful run completed in 300s
+stress: info: [3541990] successful run completed in 300s
+stress: info: [161940] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [3025066] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [1742864] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [3542036] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [1432721] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [161940] successful run completed in 300s
+stress: info: [1742864] successful run completed in 300s
+stress: info: [3542036] successful run completed in 300s
+stress: info: [1432789] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [3025112] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [161996] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [3542102] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [1432849] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [161996] successful run completed in 300s
+stress: info: [3542102] successful run completed in 300s
+stress: info: [1432901] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [1432901] successful run completed in 300s
+stress: info: [3025154] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [3542149] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [1432970] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [162065] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [3025154] successful run completed in 300s
+stress: info: [3542149] successful run completed in 300s
+stress: info: [1432970] successful run completed in 300s
+stress: info: [162065] successful run completed in 300s
+stress: info: [162115] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [1433057] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [3542194] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [1742939] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [3025214] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [162115] successful run completed in 300s
+stress: info: [1433057] successful run completed in 300s
+stress: info: [3542194] successful run completed in 300s
+stress: info: [1742939] successful run completed in 300s
+stress: info: [3025214] successful run completed in 300s
+stress: info: [1433117] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [1433117] successful run completed in 300s
+stress: info: [3542261] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [1433187] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [162170] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [1743004] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [3025260] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [3542261] successful run completed in 301s
+stress: info: [162170] successful run completed in 300s
+stress: info: [1743004] successful run completed in 300s
+stress: info: [3025305] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [1433247] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [162243] dispatching hogs: 0 cpu, 24 io, 0 vm, 0 hdd
+stress: info: [162243] successful run completed in 300s
+stress: info: [162291] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [1433319] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [3025359] dispatching hogs: 0 cpu, 12 io, 12 vm, 0 hdd
+stress: info: [162291] successful run completed in 300s
+stress: info: [162343] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [3025399] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [3542314] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [1433379] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [162343] successful run completed in 300s
+stress: info: [3542314] successful run completed in 300s
+stress: info: [162397] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [3025438] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [1433436] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [162397] successful run completed in 300s
+stress: info: [3025438] successful run completed in 300s
+stress: info: [1433436] successful run completed in 300s
+stress: info: [3025481] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [3542380] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [162448] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [1743080] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [1433504] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [3025481] successful run completed in 300s
+stress: info: [3542380] successful run completed in 300s
+stress: info: [162448] successful run completed in 300s
+stress: info: [1743080] successful run completed in 300s
+stress: info: [1433504] successful run completed in 300s
+stress: info: [162516] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [1433569] dispatching hogs: 12 cpu, 12 io, 0 vm, 0 hdd
+stress: info: [162516] successful run completed in 300s
+stress: info: [3025548] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [162565] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [1743127] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [3542429] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [1433645] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [3025548] successful run completed in 300s
+stress: info: [162565] successful run completed in 300s
+stress: info: [1743127] successful run completed in 300s
+stress: info: [3542429] successful run completed in 300s
+stress: info: [1433645] successful run completed in 300s
+stress: info: [3542490] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [1433713] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [3025594] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [162616] dispatching hogs: 12 cpu, 0 io, 12 vm, 0 hdd
+stress: info: [3542490] successful run completed in 300s
+stress: info: [1433713] successful run completed in 300s
+stress: info: [3025594] successful run completed in 300s
+stress: info: [162616] successful run completed in 300s
+stress: info: [162666] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [1433777] dispatching hogs: 0 cpu, 0 io, 24 vm, 0 hdd
+stress: info: [162666] successful run completed in 300s
+stress: info: [1433777] successful run completed in 300s
+stress: info: [162734] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [1433845] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [3025642] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [3542537] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [162734] successful run completed in 300s
+stress: info: [1433845] successful run completed in 300s
+stress: info: [3025642] successful run completed in 300s
+stress: info: [3542537] successful run completed in 300s
+stress: info: [162789] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [3025707] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [1433915] dispatching hogs: 24 cpu, 0 io, 0 vm, 0 hdd
+stress: info: [162789] successful run completed in 300s
+stress: info: [3025707] successful run completed in 300s
+stress: info: [1433915] successful run completed in 300s
+stress: info: [162838] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [1433995] dispatching hogs: 8 cpu, 8 io, 8 vm, 0 hdd
+stress: info: [162838] successful run completed in 300s
+End of executions
