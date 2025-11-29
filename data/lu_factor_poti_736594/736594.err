@@ -1,0 +1,481 @@
++ KEY=lu_factor_poti_736594
++ GUIX_DAEMON_SOCKET=guix://192.168.30.23
++ export GUIX_DAEMON_SOCKET
++ GUIX_LOCPATH=/var/guix/profiles/per-user/root/guix-profile/lib/locale
++ export GUIX_LOCPATH
++ for GUIX_PROFILE in "$HOME/.config/guix/current"
++ '[' -f /home/users/ojsmarcondes/.config/guix/current/etc/profile ']'
++ . /home/users/ojsmarcondes/.config/guix/current/etc/profile
+++ export PATH=/home/users/ojsmarcondes/.config/guix/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
+++ PATH=/home/users/ojsmarcondes/.config/guix/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
++ GUIX_MANIFEST=lu_factor_poti_736594/lu_factor_poti_736594_chameleon.scm
++ cat
++ set +u
+++ guix shell -m lu_factor_poti_736594/lu_factor_poti_736594_chameleon.scm --search-paths
+hint: Consider installing the `glibc-locales' package and defining
+`GUIX_LOCPATH', along these lines:
+
+     guix install glibc-locales
+     export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+
+See the "Application Setup" section in the manual, for more info.
+
+guix shell: warning: ambiguous package specification `starpu@1.4.9'
+guix shell: warning: choosing starpu@1.4.9 from guix-science/packages/hpc-runtime.scm:23:2
++ eval 'export PATH="/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin:/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/sbin${PATH:+:}$PATH"
+export C_INCLUDE_PATH="/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include${C_INCLUDE_PATH:+:}$C_INCLUDE_PATH"
+export CPLUS_INCLUDE_PATH="/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include/c++:/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include${CPLUS_INCLUDE_PATH:+:}$CPLUS_INCLUDE_PATH"
+export OBJC_INCLUDE_PATH="/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include${OBJC_INCLUDE_PATH:+:}$OBJC_INCLUDE_PATH"
+export OBJCPLUS_INCLUDE_PATH="/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include/c++:/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include${OBJCPLUS_INCLUDE_PATH:+:}$OBJCPLUS_INCLUDE_PATH"
+export LIBRARY_PATH="/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/lib${LIBRARY_PATH:+:}$LIBRARY_PATH"
+export GUIX_LOCPATH="/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/lib/locale${GUIX_LOCPATH:+:}$GUIX_LOCPATH"'
+++ export PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin:/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/sbin:/home/users/ojsmarcondes/.config/guix/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
+++ PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin:/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/sbin:/home/users/ojsmarcondes/.config/guix/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/cuda/bin
+++ export C_INCLUDE_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include
+++ C_INCLUDE_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include
+++ export CPLUS_INCLUDE_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include/c++:/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include
+++ CPLUS_INCLUDE_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include/c++:/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include
+++ export OBJC_INCLUDE_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include
+++ OBJC_INCLUDE_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include
+++ export OBJCPLUS_INCLUDE_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include/c++:/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include
+++ OBJCPLUS_INCLUDE_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include/c++:/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/include
+++ export LIBRARY_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/lib
+++ LIBRARY_PATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/lib
+++ export GUIX_LOCPATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/lib/locale:/var/guix/profiles/per-user/root/guix-profile/lib/locale
+++ GUIX_LOCPATH=/gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/lib/locale:/var/guix/profiles/per-user/root/guix-profile/lib/locale
++ set -u
++ HOSTFILE=lu_factor_poti_736594/736594.nodes
++ srun -l hostname
++ sort -n
++ awk '{print $2}'
++ CSV_FILE=lu_factor_poti_experimental_project.csv
++ rsync lu_factor_poti_experimental_project.csv ./lu_factor_poti_736594/
++ rsync /var/spool/slurmd/job736594/slurm_script ./lu_factor_poti_736594/lu_factor_poti_736594.slurm
+++ cat lu_factor_poti_736594/736594.nodes
+++ cut '-d ' -f1
++ for machine in $(cat $HOSTFILE | cut -d" " -f1)
++ ssh poti1 'for i in $(seq 0 $(( $(nproc) - 1 ))); do maxf=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq); cpufreq-set -c $i -g performance -d $maxf -u $maxf; done'
++ for machine in $(cat $HOSTFILE | cut -d" " -f1)
++ ssh poti2 'for i in $(seq 0 $(( $(nproc) - 1 ))); do maxf=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq); cpufreq-set -c $i -g performance -d $maxf -u $maxf; done'
++ for machine in $(cat $HOSTFILE | cut -d" " -f1)
++ ssh poti3 'for i in $(seq 0 $(( $(nproc) - 1 ))); do maxf=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq); cpufreq-set -c $i -g performance -d $maxf -u $maxf; done'
++ for machine in $(cat $HOSTFILE | cut -d" " -f1)
++ ssh poti4 'for i in $(seq 0 $(( $(nproc) - 1 ))); do maxf=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq); cpufreq-set -c $i -g performance -d $maxf -u $maxf; done'
++ for machine in $(cat $HOSTFILE | cut -d" " -f1)
++ ssh poti5 'for i in $(seq 0 $(( $(nproc) - 1 ))); do maxf=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq); cpufreq-set -c $i -g performance -d $maxf -u $maxf; done'
++ OPENMPI_PARAMETERS=
++ OPENMPI_PARAMETERS='--mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none'
++ export OMPI_MCA_plm=isolated
++ OMPI_MCA_plm=isolated
++ srun -l hostname
++ sort -n
++ awk '{print $2}'
++ sed 's/$/ slots=1/'
++ OUT_FILE=lu_factor_poti_736594/lu_factor_poti_736594_output.csv
++ echo size,block_size,scheduler,pq,gpu,nodes,exp,order,start_ts,end_ts
++ OUTPUT_DIR=lu_factor_poti_736594/output/
++ mkdir -p lu_factor_poti_736594/output/
++ tail -n +2 lu_factor_poti_experimental_project.csv
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 18:24:03'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 1 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+CHAMELEON WARNING: chameleon_pdgetrf_nopiv(): Setting limit for the number of submitted tasks
+
+++ date '+%F %T'
++ end_ts='2025-11-28 19:14:19'
++ echo '24000,300,lws,1x5,0,1,lu_factor_poti,lu_factor_poti_24000_1_GPU0_1,2025-11-28 18:24:03,2025-11-28 19:14:19'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 19:14:19'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 2 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][check_bus_config_file] No performance model for the bus, calibrating...
+[starpu][poti2][check_bus_config_file] ... done
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 19:41:33'
++ echo '24000,300,lws,1x5,0,2,lu_factor_poti,lu_factor_poti_24000_2_GPU0_2,2025-11-28 19:14:19,2025-11-28 19:41:33'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 19:41:33'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 5 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti5][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti5][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti4][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][check_bus_config_file] No performance model for the bus, calibrating...
+[starpu][poti4][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti3][check_bus_config_file] ... done
+[starpu][poti3][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 19:53:43'
++ echo '24000,300,lws,1x5,0,5,lu_factor_poti,lu_factor_poti_24000_5_GPU0_3,2025-11-28 19:41:33,2025-11-28 19:53:43'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 19:53:43'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 4 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti3][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti4][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti4][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 20:08:31'
++ echo '24000,300,lws,1x5,0,4,lu_factor_poti,lu_factor_poti_24000_4_GPU0_4,2025-11-28 19:53:43,2025-11-28 20:08:31'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 20:08:31'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 3 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 20:27:47'
++ echo '24000,300,lws,1x5,0,3,lu_factor_poti,lu_factor_poti_24000_3_GPU0_5,2025-11-28 20:08:31,2025-11-28 20:27:47'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 20:27:47'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 4 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti3][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti4][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti4][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti3][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 20:42:42'
++ echo '24000,300,lws,1x5,0,4,lu_factor_poti,lu_factor_poti_24000_4_GPU0_6,2025-11-28 20:27:47,2025-11-28 20:42:42'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 20:42:42'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 1 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+CHAMELEON WARNING: chameleon_pdgetrf_nopiv(): Setting limit for the number of submitted tasks
+
+++ date '+%F %T'
++ end_ts='2025-11-28 21:33:09'
++ echo '24000,300,lws,1x5,0,1,lu_factor_poti,lu_factor_poti_24000_1_GPU0_7,2025-11-28 20:42:42,2025-11-28 21:33:09'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 21:33:09'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 5 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti4][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti5][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti3][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti4][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti5][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 21:45:24'
++ echo '24000,300,lws,1x5,0,5,lu_factor_poti,lu_factor_poti_24000_5_GPU0_8,2025-11-28 21:33:09,2025-11-28 21:45:24'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 21:45:24'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 3 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti3][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 22:04:42'
++ echo '24000,300,lws,1x5,0,3,lu_factor_poti,lu_factor_poti_24000_3_GPU0_9,2025-11-28 21:45:24,2025-11-28 22:04:42'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 22:04:42'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 2 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 22:32:23'
++ echo '24000,300,lws,1x5,0,2,lu_factor_poti,lu_factor_poti_24000_2_GPU0_10,2025-11-28 22:04:42,2025-11-28 22:32:23'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 22:32:23'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 4 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti4][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti3][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti4][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 22:47:07'
++ echo '24000,300,lws,1x5,0,4,lu_factor_poti,lu_factor_poti_24000_4_GPU0_11,2025-11-28 22:32:23,2025-11-28 22:47:07'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 22:47:07'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 5 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti4][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti5][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti3][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti4][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti5][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 22:59:21'
++ echo '24000,300,lws,1x5,0,5,lu_factor_poti,lu_factor_poti_24000_5_GPU0_12,2025-11-28 22:47:07,2025-11-28 22:59:21'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 22:59:21'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 3 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti3][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti3][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 23:18:28'
++ echo '24000,300,lws,1x5,0,3,lu_factor_poti,lu_factor_poti_24000_3_GPU0_13,2025-11-28 22:59:21,2025-11-28 23:18:28'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 23:18:28'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 2 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti2][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti2][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+++ date '+%F %T'
++ end_ts='2025-11-28 23:45:59'
++ echo '24000,300,lws,1x5,0,2,lu_factor_poti,lu_factor_poti_24000_2_GPU0_14,2025-11-28 23:18:28,2025-11-28 23:45:59'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
+++ echo 1x5
+++ cut -dx -f1
++ p=1
++ export STARPU_NCUDA=0
++ STARPU_NCUDA=0
++ export STARPU_SCHED=lws
++ STARPU_SCHED=lws
++ STARPU_ENV_VARS=
++ STARPU_ENV_VARS+=' -x STARPU_NCUDA'
++ STARPU_ENV_VARS+=' -x STARPU_SCHED'
+++ date '+%F %T'
++ start_ts='2025-11-28 23:45:59'
+++ which mpirun
+++ which chameleon_dtesting
++ /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/mpirun -n 1 -x STARPU_NCUDA -x STARPU_SCHED --mca plm rsh --mca oob_tcp_if_include enp4s0 --mca btl_tcp_if_include enp4s0 --bind-to none -machinefile lu_factor_poti_736594/736594.nodes /gnu/store/3dys5bk2jc8sk8flfmlw57dbvmjrs1pq-profile/bin/chameleon_dtesting -o dgetrf_nopiv -m 24000 -n 24000 -b 300 -w -P 1
+[starpu][poti1][_starpu_init_topology] Warning: there are several kinds of CPU on this system. For now StarPU assumes all CPU are equal
+[starpu][poti1][_starpu_initialize_workers_bindid] Warning: hwloc reported 28 logical CPUs for 20 cores, this is not homogeneous, will assume 1 logical CPUs per core
+CHAMELEON WARNING: chameleon_pdgetrf_nopiv(): Setting limit for the number of submitted tasks
+
+++ date '+%F %T'
++ end_ts='2025-11-29 00:36:13'
++ echo '24000,300,lws,1x5,0,1,lu_factor_poti,lu_factor_poti_24000_1_GPU0_15,2025-11-28 23:45:59,2025-11-29 00:36:13'
++ IFS=,
++ read -r size block_size scheduler pq gpu nodes exp order
++ echo 'End of executions'
