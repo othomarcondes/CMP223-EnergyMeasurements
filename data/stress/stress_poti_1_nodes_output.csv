@@ -1,8 +1,0 @@
-time,cpu,io,memory,nodes,exp,order,start_ts,end_ts
-10m,8,8,8,1,stress_poti_1_nodes,stress_poti_1_nodes_10m_CPU8_IO8_MEM8_N1_1,2025-10-05 17:57:44,2025-10-05 18:07:44
-10m,12,12,0,1,stress_poti_1_nodes,stress_poti_1_nodes_10m_CPU12_IO12_MEM0_N1_2,2025-10-05 18:07:44,2025-10-05 18:17:45
-10m,24,0,0,1,stress_poti_1_nodes,stress_poti_1_nodes_10m_CPU24_IO0_MEM0_N1_3,2025-10-05 18:17:45,2025-10-05 18:27:45
-10m,0,24,0,1,stress_poti_1_nodes,stress_poti_1_nodes_10m_CPU0_IO24_MEM0_N1_4,2025-10-05 18:27:45,2025-10-05 18:37:45
-10m,12,0,12,1,stress_poti_1_nodes,stress_poti_1_nodes_10m_CPU12_IO0_MEM12_N1_5,2025-10-05 18:37:45,2025-10-05 18:47:45
-10m,0,12,12,1,stress_poti_1_nodes,stress_poti_1_nodes_10m_CPU0_IO12_MEM12_N1_6,2025-10-05 18:47:45,2025-10-05 18:57:46
-10m,0,0,24,1,stress_poti_1_nodes,stress_poti_1_nodes_10m_CPU0_IO0_MEM24_N1_7,2025-10-05 18:57:46,2025-10-05 19:07:46

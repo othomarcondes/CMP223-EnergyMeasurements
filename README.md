@@ -66,3 +66,28 @@ To fetch the measurement data from the front, you can use scp in your local mach
 scp username@gppd-hpc.inf.ufrgs.br:/home/users/username/energy_monitor_<PDU_number>.csv /home/username/
 ```
 
+## Data analysis notebook
+
+TODO traduzir
+instalar o python uv (pra linux)
+
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+criar o ambiente virtual pra rodar o notebook (no diretório do trabs) e instalar as dependencias descritas no `requirements.txt` 
+TODO tirar as dependencias que não precisa mais (ou não, é muita coisa)
+
+```
+cd CMP223-EnergyMeasurements/
+uv venv
+uv pip install -r requirements.txt
+``` 
+
+rodar o ambiente, rodar o notebook
+
+```
+source .venv/bin/activate
+jupyter notebook
+```
+
