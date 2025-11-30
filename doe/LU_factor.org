@@ -57,18 +57,18 @@ fac.design(nfactors=6,
 #+end_src
 
 #+RESULTS:
-| 60000 | 300 | lws | 1x4 | 0 | 2 | lu_factor_poti | lu_factor_poti_60000_2_GPU0_1  |
-| 60000 | 300 | lws | 1x4 | 0 | 5 | lu_factor_poti | lu_factor_poti_60000_5_GPU0_2  |
-| 60000 | 300 | lws | 1x4 | 0 | 3 | lu_factor_poti | lu_factor_poti_60000_3_GPU0_3  |
-| 60000 | 300 | lws | 1x4 | 0 | 4 | lu_factor_poti | lu_factor_poti_60000_4_GPU0_4  |
-| 60000 | 300 | lws | 1x4 | 0 | 1 | lu_factor_poti | lu_factor_poti_60000_1_GPU0_5  |
-| 60000 | 300 | lws | 1x4 | 0 | 4 | lu_factor_poti | lu_factor_poti_60000_4_GPU0_6  |
-| 60000 | 300 | lws | 1x4 | 0 | 5 | lu_factor_poti | lu_factor_poti_60000_5_GPU0_7  |
-| 60000 | 300 | lws | 1x4 | 0 | 3 | lu_factor_poti | lu_factor_poti_60000_3_GPU0_8  |
-| 60000 | 300 | lws | 1x4 | 0 | 1 | lu_factor_poti | lu_factor_poti_60000_1_GPU0_9  |
-| 60000 | 300 | lws | 1x4 | 0 | 2 | lu_factor_poti | lu_factor_poti_60000_2_GPU0_10 |
-| 60000 | 300 | lws | 1x4 | 0 | 1 | lu_factor_poti | lu_factor_poti_60000_1_GPU0_11 |
-| 60000 | 300 | lws | 1x4 | 0 | 3 | lu_factor_poti | lu_factor_poti_60000_3_GPU0_12 |
-| 60000 | 300 | lws | 1x4 | 0 | 4 | lu_factor_poti | lu_factor_poti_60000_4_GPU0_13 |
-| 60000 | 300 | lws | 1x4 | 0 | 5 | lu_factor_poti | lu_factor_poti_60000_5_GPU0_14 |
-| 60000 | 300 | lws | 1x4 | 0 | 2 | lu_factor_poti | lu_factor_poti_60000_2_GPU0_15 |
+| 60000 | 100 | lws | 1x5 | 0 | 1 | lu_factor_poti | lu_factor_poti_60000_1_GPU0_1  |
+| 60000 | 100 | lws | 1x5 | 0 | 3 | lu_factor_poti | lu_factor_poti_60000_3_GPU0_2  |
+| 60000 | 100 | lws | 1x5 | 0 | 2 | lu_factor_poti | lu_factor_poti_60000_2_GPU0_3  |
+| 60000 | 100 | lws | 1x5 | 0 | 4 | lu_factor_poti | lu_factor_poti_60000_4_GPU0_4  |
+| 60000 | 100 | lws | 1x5 | 0 | 5 | lu_factor_poti | lu_factor_poti_60000_5_GPU0_5  |
+| 60000 | 100 | lws | 1x5 | 0 | 4 | lu_factor_poti | lu_factor_poti_60000_4_GPU0_6  |
+| 60000 | 100 | lws | 1x5 | 0 | 5 | lu_factor_poti | lu_factor_poti_60000_5_GPU0_7  |
+| 60000 | 100 | lws | 1x5 | 0 | 2 | lu_factor_poti | lu_factor_poti_60000_2_GPU0_8  |
+| 60000 | 100 | lws | 1x5 | 0 | 3 | lu_factor_poti | lu_factor_poti_60000_3_GPU0_9  |
+| 60000 | 100 | lws | 1x5 | 0 | 1 | lu_factor_poti | lu_factor_poti_60000_1_GPU0_10 |
+| 60000 | 100 | lws | 1x5 | 0 | 4 | lu_factor_poti | lu_factor_poti_60000_4_GPU0_11 |
+| 60000 | 100 | lws | 1x5 | 0 | 2 | lu_factor_poti | lu_factor_poti_60000_2_GPU0_12 |
+| 60000 | 100 | lws | 1x5 | 0 | 3 | lu_factor_poti | lu_factor_poti_60000_3_GPU0_13 |
+| 60000 | 100 | lws | 1x5 | 0 | 5 | lu_factor_poti | lu_factor_poti_60000_5_GPU0_14 |
+| 60000 | 100 | lws | 1x5 | 0 | 1 | lu_factor_poti | lu_factor_poti_60000_1_GPU0_15 |
