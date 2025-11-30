@@ -139,7 +139,7 @@ stress.energ_used |>
     )
   ) |>
   ggplot(aes(x = factor(nodes), y = energy_diff, color = type_24)) +
-  default_theme() +
+  default_theme(base_size = 16) +
   geom_point(size = 3) +
   labs(
     x = "Nodes",
@@ -195,7 +195,7 @@ stress.energ |>
   ) |>
   ggplot(aes(x = t_comp, y = Active_Power)) +
   geom_line() +
-  default_theme() +
+  default_theme(base_size = 12) +
   labs(x = "Time (s)", y = "Active Power (W)") -> p
 
 ggsave("figures/stress.pdf", width = 6, height = 5)
@@ -359,7 +359,7 @@ default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, sk
 p <- lu.exps |>
   mutate(time = as.numeric(end_ts - start_ts, units = "secs")) |>
   ggplot(aes(x = factor(nodes), y = time)) +
-  default_theme() +
+  default_theme(base_size = 12) +
   geom_point(size = 3) +
   labs(
     x = "Nodes",
@@ -377,7 +377,7 @@ ggsave("figures/lu_times.pdf", width=6, height=5)
 lu.energ_used |>
   ggplot(aes(x = factor(nodes), y = energy_diff)) +
   geom_point(size = 3) +
-  default_theme() +
+  default_theme(base_size = 14) +
   labs(
     x = "Nodes",
     y = "Energy (Wh)"
@@ -400,7 +400,7 @@ lu.energ |>
     t_comp = cumsum(dt)
   ) |>
   ggplot(aes(x = t_comp, y = Active_Power)) +
-  default_theme() +
+  default_theme(base_size = 12) +
   geom_line() +
   labs(x = "Time (s)", y = "Active Power (W)") -> p
 
