@@ -15,17 +15,17 @@ options(crayon.enabled=FALSE)
 library(DoE.base)
 library(tidyverse)
 
-fator_size = c(16000, 32000, 64000, 96000)
-fator_blocksize = c(400, 800)
+fator_size = c(16000, 32000, 60000, 96000)
+fator_blocksize = c(100, 300, 800)
 fator_scheduler = c("dmda", "lws", "dmdas", "random")
-fator_pq = c("1x4", "2x2", "4x1")
+fator_pq = c("1x5", "5x1")
 fator_gpu = c(1, 0)
-fator_nodes = 1:2
+fator_nodes = 1:5
 
-job_name = "lu_factor_tupi"
+job_name = "lu_factor_poti"
 
 fac.design(nfactors=6,
-           replications=1,
+           replications=3,
            repeat.only= FALSE ,
            randomize=TRUE,
            seed=0,
@@ -45,28 +45,30 @@ fac.design(nfactors=6,
            )) |>
   as_tibble() |>
   filter(scheduler == "lws") |>
-  filter(pq == "1x4") |>
-  filter(block_size == 400) |>
+  filter(size == 60000) |>
+  filter(pq == "1x5") |>
+  filter(block_size == 100) |>
+  filter(gpu == 0) |>
     mutate(exp = job_name) |>
     mutate(Order = paste0(exp, "_", size, "_", nodes,"_GPU", gpu, "_", 1:n())) |>
+  select(-Blocks) |>
   write_csv(paste0(job_name, "_experimental_project.csv"), progress=FALSE) |>
   print()
 #+end_src
 
 #+RESULTS:
-| 64000 | 400 | lws | 1x4 | 0 | 2 | lu_factor_tupi | lu_factor_tupi_64000_2_GPU0_1  |
-| 16000 | 400 | lws | 1x4 | 0 | 1 | lu_factor_tupi | lu_factor_tupi_16000_1_GPU0_2  |
-| 32000 | 400 | lws | 1x4 | 0 | 2 | lu_factor_tupi | lu_factor_tupi_32000_2_GPU0_3  |
-| 96000 | 400 | lws | 1x4 | 0 | 1 | lu_factor_tupi | lu_factor_tupi_96000_1_GPU0_4  |
-| 64000 | 400 | lws | 1x4 | 0 | 1 | lu_factor_tupi | lu_factor_tupi_64000_1_GPU0_5  |
-| 96000 | 400 | lws | 1x4 | 1 | 2 | lu_factor_tupi | lu_factor_tupi_96000_2_GPU1_6  |
-| 16000 | 400 | lws | 1x4 | 1 | 1 | lu_factor_tupi | lu_factor_tupi_16000_1_GPU1_7  |
-| 96000 | 400 | lws | 1x4 | 0 | 2 | lu_factor_tupi | lu_factor_tupi_96000_2_GPU0_8  |
-| 16000 | 400 | lws | 1x4 | 1 | 2 | lu_factor_tupi | lu_factor_tupi_16000_2_GPU1_9  |
-| 32000 | 400 | lws | 1x4 | 0 | 1 | lu_factor_tupi | lu_factor_tupi_32000_1_GPU0_10 |
-| 96000 | 400 | lws | 1x4 | 1 | 1 | lu_factor_tupi | lu_factor_tupi_96000_1_GPU1_11 |
-| 64000 | 400 | lws | 1x4 | 1 | 2 | lu_factor_tupi | lu_factor_tupi_64000_2_GPU1_12 |
-| 32000 | 400 | lws | 1x4 | 1 | 2 | lu_factor_tupi | lu_factor_tupi_32000_2_GPU1_13 |
-| 64000 | 400 | lws | 1x4 | 1 | 1 | lu_factor_tupi | lu_factor_tupi_64000_1_GPU1_14 |
-| 16000 | 400 | lws | 1x4 | 0 | 2 | lu_factor_tupi | lu_factor_tupi_16000_2_GPU0_15 |
-| 32000 | 400 | lws | 1x4 | 1 | 1 | lu_factor_tupi | lu_factor_tupi_32000_1_GPU1_16 |
+| 60000 | 300 | lws | 1x4 | 0 | 2 | lu_factor_poti | lu_factor_poti_60000_2_GPU0_1  |
+| 60000 | 300 | lws | 1x4 | 0 | 5 | lu_factor_poti | lu_factor_poti_60000_5_GPU0_2  |
+| 60000 | 300 | lws | 1x4 | 0 | 3 | lu_factor_poti | lu_factor_poti_60000_3_GPU0_3  |
+| 60000 | 300 | lws | 1x4 | 0 | 4 | lu_factor_poti | lu_factor_poti_60000_4_GPU0_4  |
+| 60000 | 300 | lws | 1x4 | 0 | 1 | lu_factor_poti | lu_factor_poti_60000_1_GPU0_5  |
+| 60000 | 300 | lws | 1x4 | 0 | 4 | lu_factor_poti | lu_factor_poti_60000_4_GPU0_6  |
+| 60000 | 300 | lws | 1x4 | 0 | 5 | lu_factor_poti | lu_factor_poti_60000_5_GPU0_7  |
+| 60000 | 300 | lws | 1x4 | 0 | 3 | lu_factor_poti | lu_factor_poti_60000_3_GPU0_8  |
+| 60000 | 300 | lws | 1x4 | 0 | 1 | lu_factor_poti | lu_factor_poti_60000_1_GPU0_9  |
+| 60000 | 300 | lws | 1x4 | 0 | 2 | lu_factor_poti | lu_factor_poti_60000_2_GPU0_10 |
+| 60000 | 300 | lws | 1x4 | 0 | 1 | lu_factor_poti | lu_factor_poti_60000_1_GPU0_11 |
+| 60000 | 300 | lws | 1x4 | 0 | 3 | lu_factor_poti | lu_factor_poti_60000_3_GPU0_12 |
+| 60000 | 300 | lws | 1x4 | 0 | 4 | lu_factor_poti | lu_factor_poti_60000_4_GPU0_13 |
+| 60000 | 300 | lws | 1x4 | 0 | 5 | lu_factor_poti | lu_factor_poti_60000_5_GPU0_14 |
+| 60000 | 300 | lws | 1x4 | 0 | 2 | lu_factor_poti | lu_factor_poti_60000_2_GPU0_15 |
