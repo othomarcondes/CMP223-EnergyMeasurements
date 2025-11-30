@@ -1,0 +1,16 @@
+size,block_size,scheduler,pq,gpu,nodes,exp,order,start_ts,end_ts
+60000,100,lws,1x5,0,1,lu_factor_poti,lu_factor_poti_60000_1_GPU0_1,2025-11-29 19:32:26,2025-11-29 20:03:48
+60000,100,lws,1x5,0,2,lu_factor_poti,lu_factor_poti_60000_2_GPU0_2,2025-11-29 20:03:48,2025-11-29 20:20:42
+60000,100,lws,1x5,0,5,lu_factor_poti,lu_factor_poti_60000_5_GPU0_3,2025-11-29 20:20:42,2025-11-29 20:39:29
+60000,100,lws,1x5,0,4,lu_factor_poti,lu_factor_poti_60000_4_GPU0_4,2025-11-29 20:39:29,2025-11-29 20:56:29
+60000,100,lws,1x5,0,3,lu_factor_poti,lu_factor_poti_60000_3_GPU0_5,2025-11-29 20:56:29,2025-11-29 21:13:14
+60000,100,lws,1x5,0,4,lu_factor_poti,lu_factor_poti_60000_4_GPU0_6,2025-11-29 21:13:14,2025-11-29 21:30:18
+60000,100,lws,1x5,0,1,lu_factor_poti,lu_factor_poti_60000_1_GPU0_7,2025-11-29 21:30:18,2025-11-29 22:01:39
+60000,100,lws,1x5,0,5,lu_factor_poti,lu_factor_poti_60000_5_GPU0_8,2025-11-29 22:01:39,2025-11-29 22:19:29
+60000,100,lws,1x5,0,3,lu_factor_poti,lu_factor_poti_60000_3_GPU0_9,2025-11-29 22:19:29,2025-11-29 22:36:09
+60000,100,lws,1x5,0,2,lu_factor_poti,lu_factor_poti_60000_2_GPU0_10,2025-11-29 22:36:09,2025-11-29 22:53:04
+60000,100,lws,1x5,0,4,lu_factor_poti,lu_factor_poti_60000_4_GPU0_11,2025-11-29 22:53:04,2025-11-29 23:10:10
+60000,100,lws,1x5,0,5,lu_factor_poti,lu_factor_poti_60000_5_GPU0_12,2025-11-29 23:10:10,2025-11-29 23:28:30
+60000,100,lws,1x5,0,3,lu_factor_poti,lu_factor_poti_60000_3_GPU0_13,2025-11-29 23:28:30,2025-11-29 23:45:14
+60000,100,lws,1x5,0,2,lu_factor_poti,lu_factor_poti_60000_2_GPU0_14,2025-11-29 23:45:14,2025-11-30 00:02:11
+60000,100,lws,1x5,0,1,lu_factor_poti,lu_factor_poti_60000_1_GPU0_15,2025-11-30 00:02:11,2025-11-30 00:33:56

@@ -1,0 +1,2 @@
+Id;Function;threads;gpus;P;Q;mtxfmt;nb;m;n;lda;seedA;bump;tsub;time;gflops
+0;dgetrf_nopiv;27;0;1;2;0;100;60000;60000;60000;1804289383;6.000000e+04;0.000000e+00;9.773812e+02;1.473306e+02
