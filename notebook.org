@@ -140,6 +140,7 @@ stress.energ_used |>
   ) |>
   ggplot(aes(x = factor(nodes), y = energy_diff, color = type_24)) +
   default_theme(base_size = 16) +
+  ylim(0, NA) +
   geom_point(size = 3) +
   labs(
     x = "Nodes",
@@ -172,6 +173,7 @@ p <- energ.used |>
   geom_point(size = 2) +
   facet_grid(type_24 ~ period, scales = "free_x") +
   default_theme(base_size = 12) +
+  ylim(0, NA) +
   labs(
     x = "Nodes",
     y = "Energy (Wh)",
@@ -197,6 +199,7 @@ stress.energ |>
   ggplot(aes(x = t_comp, y = Active_Power)) +
   geom_line() +
   default_theme(base_size = 12) +
+  ylim(0, NA) +
   labs(x = "Time (s)", y = "Active Power (W)") -> p
 
 ggsave("figures/stress.pdf", width = 6, height = 5)
@@ -361,6 +364,7 @@ p <- lu.exps |>
   mutate(time = as.numeric(end_ts - start_ts, units = "secs")) |>
   ggplot(aes(x = factor(nodes), y = time)) +
   default_theme(base_size = 12) +
+  ylim(0, NA) +
   geom_point(size = 3) +
   labs(
     x = "Nodes",
@@ -379,6 +383,7 @@ lu.energ_used |>
   ggplot(aes(x = factor(nodes), y = energy_diff)) +
   geom_point(size = 3) +
   default_theme(base_size = 14) +
+  ylim(0, NA) +
   labs(
     x = "Nodes",
     y = "Energy (Wh)"
@@ -402,6 +407,7 @@ lu.energ |>
   ) |>
   ggplot(aes(x = t_comp, y = Active_Power)) +
   default_theme(base_size = 12) +
+  ylim(0, NA) +
   geom_line() +
   labs(x = "Time (s)", y = "Active Power (W)") -> p
 
@@ -424,6 +430,7 @@ lu.result |>
   ungroup() |>
   ggplot(aes(x = t_comp, y = Active_Power, color = factor(idx))) +
   default_theme(base_size = 10) +
+  ylim(0, NA) +
   geom_line() +
   facet_grid(~ nodes, scales = "fixed") +
   labs(x = "Time (s)", y = "Active Power (W)") -> p
@@ -448,6 +455,7 @@ lu.result |>
   ungroup() |>
   ggplot(aes(x = t_comp, y = Active_Power, color = factor(idx))) +
   default_theme(base_size = 10) +
+  ylim(0, NA) +
   geom_line() +
   facet_grid(~ nodes, scales = "fixed") +
   labs(x = "Time (s)", y = "Active Power (W)") -> p
