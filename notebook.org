@@ -127,7 +127,7 @@ default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, sk
 #+RESULTS:
 
 *** Energy used
-
+**** All together
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 stress.energ_used |>
   filter(cpu == 24 | io == 24 | memory == 24) |>
@@ -139,14 +139,14 @@ stress.energ_used |>
     )
   ) |>
   ggplot(aes(x = factor(nodes), y = energy_diff, color = type_24)) +
+  default_theme() +
   geom_point(size = 3) +
   labs(
     x = "Nodes",
     y = "Energy (Wh)",
     color = "Workload"
   ) -> p
-p
-ggsave("img/stress_energ.png", width=6, height=5)
+ggsave("figures/stress_energ.pdf", width=6, height=5)
 #+end_src
 
 #+RESULTS:
@@ -176,9 +176,7 @@ p <- energ.used |>
     y = "Energy (Wh)",
     color = "Workload"
   )
-
-p
-ggsave("img/stress_energ_facet.png", width=6, height=5)
+ggsave("figures/stress_energ_facet.pdf", width=6, height=5)
 #+end_src
 
 #+RESULTS:
@@ -197,10 +195,10 @@ stress.energ |>
   ) |>
   ggplot(aes(x = t_comp, y = Active_Power)) +
   geom_line() +
+  default_theme() +
   labs(x = "Time (s)", y = "Active Power (W)") -> p
 
-p
-ggsave("img/stress.pdf", width = 6, height = 5)
+ggsave("figures/stress.pdf", width = 6, height = 5)
 #+end_src
 
 #+RESULTS:
@@ -361,14 +359,14 @@ default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, sk
 p <- lu.exps |>
   mutate(time = as.numeric(end_ts - start_ts, units = "secs")) |>
   ggplot(aes(x = factor(nodes), y = time)) +
+  default_theme() +
   geom_point(size = 3) +
   labs(
     x = "Nodes",
     y = "Execution time (s)"
   )
 
-p
-ggsave("img/lu_times.png", width=6, height=5)
+ggsave("figures/lu_times.pdf", width=6, height=5)
 #+end_src
 
 #+RESULTS:
@@ -379,12 +377,13 @@ ggsave("img/lu_times.png", width=6, height=5)
 lu.energ_used |>
   ggplot(aes(x = factor(nodes), y = energy_diff)) +
   geom_point(size = 3) +
+  default_theme() +
   labs(
     x = "Nodes",
     y = "Energy (Wh)"
   ) -> p
-p
-ggsave("img/lu_energ.png", width=6, height=5)
+
+ggsave("figures/lu_energ.pdf", width=6, height=5)
 #+end_src
 
 #+RESULTS:
@@ -401,11 +400,11 @@ lu.energ |>
     t_comp = cumsum(dt)
   ) |>
   ggplot(aes(x = t_comp, y = Active_Power)) +
+  default_theme() +
   geom_line() +
   labs(x = "Time (s)", y = "Active Power (W)") -> p
 
-p
-ggsave("img/lu.png", width = 6, height = 5)
+ggsave("figures/lu.pdf", width = 6, height = 5)
 #+end_src
 
 #+RESULTS:
