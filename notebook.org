@@ -1,0 +1,411 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+
+#+TITLE: Medições de Consumo de Energia em Arquiteturas HPC
+#+AUTHOR: Otho José Sirtoli Marcondes and Laura R. Soares
+
+#+STARTUP: overview indent
+#+LANGUAGE: en
+#+OPTIONS: H:3 creator:nil timestamp:nil skip:nil toc:nil num:t ^:nil ~:~
+#+OPTIONS: author:nil title:nil date:nil
+#+TAGS: noexport(n) deprecated(d) ignore(i)
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+
+* Analysis
+** Stress
+*** Read
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(tidyverse)
+
+bind_rows(
+  read_delim("./data/stress_poti_5_nodes_736356/stress_poti_5_nodes_736356_output.csv", show_col_types=FALSE, progress=FALSE, delim=","),
+  read_delim("./data/stress_poti_5_nodes_735647/stress_poti_5_nodes_735647_output.csv", show_col_types=FALSE, progress=FALSE, delim=",")) |>
+  mutate(
+    start_ts = start_ts - seconds(30),
+    end_ts = end_ts + seconds(30),
+  )-> stress.exps
+bind_rows(
+  read_delim("./data/stress_poti_5_nodes_736356/energy_monitor_123_lu.csv", show_col_types=FALSE, progress=FALSE, delim=",",   col_names = c("Time", "Energy", "Active_Power")),
+  read_delim("./data/stress_poti_5_nodes_735647/energy_monitor_123_stress_5_nodes.csv", show_col_types=FALSE, progress=FALSE, delim=",")
+)->stress.energ
+
+#exps.stress
+#energ.stress
+
+# Aggregate all energy data with the experiments in a single tibble
+stress.result <- map_dfr(seq_len(nrow(stress.exps)), function(i) {
+  exp_row <- stress.exps[i, ]
+
+  stress.energ |>
+    filter(Time >= exp_row$start_ts,
+           Time <= exp_row$end_ts) |>
+    mutate(
+      exp   = exp_row$exp,
+      order = exp_row$order,
+      cpu   = exp_row$cpu,
+      io    = exp_row$io,
+      memory = exp_row$memory,
+      nodes  = exp_row$nodes,
+      idx = i
+    )
+})
+stress.result
+
+# Total energy consumed by each experiment
+stress.result |>
+  group_by(idx, cpu, io, memory, nodes) |>
+  summarise(
+    Time = max(Time, na.rm =  TRUE),
+    energy_min = min(Energy, na.rm = TRUE),
+    energy_max = max(Energy, na.rm = TRUE),
+    energy_diff = energy_max - energy_min,
+    .groups = "drop"
+  ) -> stress.energ_used
+stress.energ_used
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 204,928 × 10
+   Time                 Energy Active_Power exp                 order              cpu    io memory nodes   idx
+   <dttm>                <dbl>        <dbl> <chr>               <chr>            <dbl> <dbl>  <dbl> <dbl> <int>
+ 1 2025-11-28 06:38:38 7451853          366 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+ 2 2025-11-28 06:38:38 7451853          366 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+ 3 2025-11-28 06:38:38 7451853          309 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+ 4 2025-11-28 06:38:38 7451853          309 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+ 5 2025-11-28 06:38:38 7451853          309 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+ 6 2025-11-28 06:38:39 7451853          310 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+ 7 2025-11-28 06:38:39 7451853          310 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+ 8 2025-11-28 06:38:39 7451853          310 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+ 9 2025-11-28 06:38:39 7451853          310 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+10 2025-11-28 06:38:39 7451853          287 stress_poti_5_nodes stress_poti_5_n…    12     0     12     4     1
+# ℹ 204,918 more rows
+# ℹ Use `print(n = ...)` to see more rows
+# A tibble: 105 × 9
+     idx   cpu    io memory nodes Time                energy_min energy_max energy_diff
+   <int> <dbl> <dbl>  <dbl> <dbl> <dttm>                   <dbl>      <dbl>       <dbl>
+ 1     1    12     0     12     4 2025-11-28 06:44:39    7451853    7451938          85
+ 2     2     0    24      0     1 2025-11-28 06:50:09    7451936    7451962          26
+ 3     3     0    12     12     5 2025-11-28 06:55:39    7451960    7452039          79
+ 4     4     0    12     12     1 2025-11-28 07:01:09    7452037    7452076          39
+ 5     5    12     0     12     5 2025-11-28 07:06:39    7452074    7452179         105
+ 6     6     0     0     24     1 2025-11-28 07:12:09    7452176    7452221          45
+ 7     7    12     0     12     3 2025-11-28 07:17:39    7452219    7452287          68
+ 8     8    12     0     12     1 2025-11-28 07:23:09    7452284    7452332          48
+ 9     9    12     0     12     2 2025-11-28 07:28:39    7452330    7452376          46
+10    10     0    24      0     2 2025-11-28 07:34:09    7452374    7452400          26
+# ℹ 95 more rows
+# ℹ Use `print(n = ...)` to see more rows
+#+end_example
+
+*** Theme
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, skip_x = FALSE) {
+  ret <- list()
+
+  ret[[length(ret) + 1]] <- theme_bw(base_size = base_size)
+  ret[[length(ret) + 1]] <- theme(
+    plot.margin = unit(c(0, 0, 0, 0), "cm"),
+    legend.spacing = unit(3, "cm"),
+    legend.position = "top",
+    legend.justification = "left",
+    legend.box.spacing = unit(0, "pt"),
+    legend.box.margin = margin(0, 0, 0, 0)
+  )
+  ret[[length(ret) + 1]] <- guides(color = guide_legend(nrow = 1))
+  if (!legend_title) {
+    ret[[length(ret) + 1]] <- theme(legend.title = element_blank())
+  }
+  return(ret)
+}
+#+end_src
+
+#+RESULTS:
+
+*** Energy used
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+stress.energ_used |>
+  filter(cpu == 24 | io == 24 | memory == 24) |>
+  mutate(
+    type_24 = dplyr::case_when(
+      cpu == 24    ~ "CPU only",
+      io == 24     ~ "IO only",
+      memory == 24 ~ "Memory only"
+    )
+  ) |>
+  ggplot(aes(x = factor(nodes), y = energy_diff, color = type_24)) +
+  geom_point(size = 3) +
+  labs(
+    x = "Nodes",
+    y = "Energy (Wh)",
+    color = "Workload"
+  ) -> p
+p
+ggsave("img/stress_energ.png", width=6, height=5)
+#+end_src
+
+#+RESULTS:
+
+**** Different dates facet
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+cut_date <- as.Date("2025-11-26")
+
+p <- energ.used |>
+  dplyr::filter(cpu == 24 | io == 24 | memory == 24) |>
+  dplyr::mutate(
+    type_24 = dplyr::case_when(
+      cpu == 24    ~ "CPU only",
+      io == 24     ~ "IO only",
+      memory == 24 ~ "Memory only"
+    ),
+    period = dplyr::if_else(as.Date(Time) < cut_date,
+                            "< 2025-11-26",
+                            ">= 2025-11-26")
+  ) |>
+  ggplot(aes(x = factor(nodes), y = energy_diff)) +
+  geom_point(size = 3) +
+  facet_grid(type_24 ~ period, scales = "free_x") +
+  labs(
+    x = "Nodes",
+    y = "Energy (Wh)",
+    color = "Workload"
+  )
+
+p
+ggsave("img/stress_energ_facet.png", width=6, height=5)
+#+end_src
+
+#+RESULTS:
+
+*** Time x Active Power
+There is a difference in the minimum Active Power of the experiments in different dates. Also, some configurations present more Active Power and it also increase with the number of nodes.
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+stress.energ |>
+  arrange(Time) |>
+  mutate(
+    dt = as.numeric(Time - lag(Time)),
+    dt = ifelse(is.na(dt), 0, dt),
+    dt = ifelse(dt > 1, 1, dt),
+    t_comp = cumsum(dt)
+  ) |>
+  ggplot(aes(x = t_comp, y = Active_Power)) +
+  geom_line() +
+  labs(x = "Time (s)", y = "Active Power (W)") -> p
+
+p
+ggsave("img/stress.pdf", width = 6, height = 5)
+#+end_src
+
+#+RESULTS:
+
+*** Minimum active power in distinct days
+As we can see, there's a considerable difference in the minimum Active Power of the two experiments conducted in distinct dates. Our assumption is that the malfunction of the poti2's fan was the cause (the repair was made in 27/11/2025).
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+cut_date <- as.Date("2025-11-26")
+
+stress.energ |>
+  mutate(period = if_else(as.Date(Time) >= cut_date, ">= date", "<= date")) |>
+  group_by(period) |>
+  slice_min(order_by = Active_Power, with_ties = FALSE) |>
+  select(period, Time, Active_Power) |>
+  print()
+#+end_src
+
+#+RESULTS:
+: # A tibble: 2 × 3
+: # Groups:   period [2]
+:   period  Time                Active_Power
+:   <chr>   <dttm>                     <dbl>
+: 1 <= date 2025-11-25 17:15:26          322
+: 2 >= date 2025-11-28 07:38:39          257
+
+** LU factor
+*** Read
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+options(crayon.enabled=FALSE)
+library(tidyverse)
+
+read_delim("./data/lu_factor_poti_736813/lu_factor_poti_736813_output.csv", show_col_types=FALSE, progress=FALSE, delim=",") -> lu.exps
+read_delim("./data/lu_factor_poti_736813/energy_monitor_123_last.csv", show_col_types=FALSE, progress=FALSE, delim=",",   col_names = c("Time", "Energy", "Active_Power"))->lu.energ
+
+#lu.exps
+#lu.energ
+
+# Aggregate all LU energy data with the experiments in a single tibble
+lu.result <- purrr::map_dfr(seq_len(nrow(lu.exps)), function(i) {
+  exp_row <- lu.exps[i, ]
+
+  lu.energ |>
+    dplyr::filter(Time >= exp_row$start_ts,
+                  Time <= exp_row$end_ts) |>
+    dplyr::mutate(
+      size       = exp_row$size,
+      block_size = exp_row$block_size,
+      scheduler  = exp_row$scheduler,
+      pq         = exp_row$pq,
+      gpu        = exp_row$gpu,
+      nodes      = exp_row$nodes,
+      exp        = exp_row$exp,
+      order      = exp_row$order,
+      idx        = i
+    )
+})
+
+lu.result
+
+# Total energy consumed by each experiment
+lu.result |>
+  group_by(idx, nodes) |>
+  summarise(
+    Time = max(Time, na.rm =  TRUE),
+    energy_min = min(Energy, na.rm = TRUE),
+    energy_max = max(Energy, na.rm = TRUE),
+    energy_diff = energy_max - energy_min,
+    .groups = "drop"
+  ) -> lu.energ_used
+lu.energ_used
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 15 × 10
+    size block_size scheduler pq      gpu nodes exp            order    start_ts            end_ts
+   <dbl>      <dbl> <chr>     <chr> <dbl> <dbl> <chr>          <chr>    <dttm>              <dttm>
+ 1 60000        100 lws       1x5       0     1 lu_factor_poti lu_fact… 2025-11-29 19:32:26 2025-11-29 20:03:48
+ 2 60000        100 lws       1x5       0     2 lu_factor_poti lu_fact… 2025-11-29 20:03:48 2025-11-29 20:20:42
+ 3 60000        100 lws       1x5       0     5 lu_factor_poti lu_fact… 2025-11-29 20:20:42 2025-11-29 20:39:29
+ 4 60000        100 lws       1x5       0     4 lu_factor_poti lu_fact… 2025-11-29 20:39:29 2025-11-29 20:56:29
+ 5 60000        100 lws       1x5       0     3 lu_factor_poti lu_fact… 2025-11-29 20:56:29 2025-11-29 21:13:14
+ 6 60000        100 lws       1x5       0     4 lu_factor_poti lu_fact… 2025-11-29 21:13:14 2025-11-29 21:30:18
+ 7 60000        100 lws       1x5       0     1 lu_factor_poti lu_fact… 2025-11-29 21:30:18 2025-11-29 22:01:39
+ 8 60000        100 lws       1x5       0     5 lu_factor_poti lu_fact… 2025-11-29 22:01:39 2025-11-29 22:19:29
+ 9 60000        100 lws       1x5       0     3 lu_factor_poti lu_fact… 2025-11-29 22:19:29 2025-11-29 22:36:09
+10 60000        100 lws       1x5       0     2 lu_factor_poti lu_fact… 2025-11-29 22:36:09 2025-11-29 22:53:04
+11 60000        100 lws       1x5       0     4 lu_factor_poti lu_fact… 2025-11-29 22:53:04 2025-11-29 23:10:10
+12 60000        100 lws       1x5       0     5 lu_factor_poti lu_fact… 2025-11-29 23:10:10 2025-11-29 23:28:30
+13 60000        100 lws       1x5       0     3 lu_factor_poti lu_fact… 2025-11-29 23:28:30 2025-11-29 23:45:14
+14 60000        100 lws       1x5       0     2 lu_factor_poti lu_fact… 2025-11-29 23:45:14 2025-11-30 00:02:11
+15 60000        100 lws       1x5       0     1 lu_factor_poti lu_fact… 2025-11-30 00:02:11 2025-11-30 00:33:56
+# A tibble: 98,346 × 12
+   Time                 Energy Active_Power  size block_size scheduler pq      gpu nodes exp        order   idx
+   <dttm>                <dbl>        <dbl> <dbl>      <dbl> <chr>     <chr> <dbl> <dbl> <chr>      <chr> <int>
+ 1 2025-11-29 19:32:26 7471400          315 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+ 2 2025-11-29 19:32:26 7471400          315 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+ 3 2025-11-29 19:32:26 7471400          311 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+ 4 2025-11-29 19:32:26 7471400          342 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+ 5 2025-11-29 19:32:26 7471400          342 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+ 6 2025-11-29 19:32:27 7471400          342 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+ 7 2025-11-29 19:32:27 7471400          342 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+ 8 2025-11-29 19:32:27 7471400          342 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+ 9 2025-11-29 19:32:27 7471400          342 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+10 2025-11-29 19:32:27 7471400          342 60000        100 lws       1x5       0     1 lu_factor… lu_f…     1
+# ℹ 98,336 more rows
+# ℹ Use `print(n = ...)` to see more rows
+# A tibble: 15 × 6
+     idx nodes Time                energy_min energy_max energy_diff
+   <int> <dbl> <dttm>                   <dbl>      <dbl>       <dbl>
+ 1     1     1 2025-11-29 20:03:48    7471400    7471651         251
+ 2     2     2 2025-11-29 20:20:42    7471651    7471783         132
+ 3     3     5 2025-11-29 20:39:29    7471783    7472080         297
+ 4     4     4 2025-11-29 20:56:29    7472080    7472308         228
+ 5     5     3 2025-11-29 21:13:14    7472308    7472491         183
+ 6     6     4 2025-11-29 21:30:18    7472491    7472720         229
+ 7     7     1 2025-11-29 22:01:39    7472720    7472974         254
+ 8     8     5 2025-11-29 22:19:29    7472974    7473259         285
+ 9     9     3 2025-11-29 22:36:09    7473259    7475151        1892
+10    10     2 2025-11-29 22:53:04    7475151    7475284         133
+11    11     4 2025-11-29 23:10:10    7475284    7475518         234
+12    12     5 2025-11-29 23:28:30    7475518    7475804         286
+13    13     3 2025-11-29 23:45:14    7475803    7475987         184
+14    14     2 2025-11-30 00:02:11    7475987    7476122         135
+15    15     1 2025-11-30 00:33:56    7476122    7476380         258
+#+end_example
+
+*** Theme
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+default_theme <- function(base_size = 22, expand = 0.0, legend_title = FALSE, skip_x = FALSE) {
+  ret <- list()
+
+  ret[[length(ret) + 1]] <- theme_bw(base_size = base_size)
+  ret[[length(ret) + 1]] <- theme(
+    plot.margin = unit(c(0, 0, 0, 0), "cm"),
+    legend.spacing = unit(3, "cm"),
+    legend.position = "top",
+    legend.justification = "left",
+    legend.box.spacing = unit(0, "pt"),
+    legend.box.margin = margin(0, 0, 0, 0)
+  )
+  ret[[length(ret) + 1]] <- guides(color = guide_legend(nrow = 1))
+  if (!legend_title) {
+    ret[[length(ret) + 1]] <- theme(legend.title = element_blank())
+  }
+  return(ret)
+}
+#+end_src
+
+#+RESULTS:
+
+*** Time per node
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+p <- lu.exps |>
+  mutate(time = as.numeric(end_ts - start_ts, units = "secs")) |>
+  ggplot(aes(x = factor(nodes), y = time)) +
+  geom_point(size = 3) +
+  labs(
+    x = "Nodes",
+    y = "Execution time (s)"
+  )
+
+p
+ggsave("img/lu_times.png", width=6, height=5)
+#+end_src
+
+#+RESULTS:
+
+*** Energy used
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+lu.energ_used |>
+  ggplot(aes(x = factor(nodes), y = energy_diff)) +
+  geom_point(size = 3) +
+  labs(
+    x = "Nodes",
+    y = "Energy (Wh)"
+  ) -> p
+p
+ggsave("img/lu_energ.png", width=6, height=5)
+#+end_src
+
+#+RESULTS:
+
+*** Time x Active Power
+
+#+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
+lu.energ |>
+  arrange(Time) |>
+  mutate(
+    dt = as.numeric(Time - lag(Time)),
+    dt = ifelse(is.na(dt), 0, dt),
+    dt = ifelse(dt > 1, 1, dt),
+    t_comp = cumsum(dt)
+  ) |>
+  ggplot(aes(x = t_comp, y = Active_Power)) +
+  geom_line() +
+  labs(x = "Time (s)", y = "Active Power (W)") -> p
+
+p
+ggsave("img/lu.png", width = 6, height = 5)
+#+end_src
+
+#+RESULTS:
