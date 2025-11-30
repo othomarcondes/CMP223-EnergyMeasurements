@@ -171,7 +171,14 @@ p <- energ.used |>
   ) |>
   ggplot(aes(x = factor(nodes), y = energy_diff)) +
   geom_point(size = 2) +
-  facet_grid(type_24 ~ period, scales = "free_x") +
+  facet_grid(type_24 ~ period,
+             scales = "fixed",
+             labeller = labeller(
+      period = c(
+        "< 2025-11-26"  = "Before fan repair",
+        ">= 2025-11-26" = "After fan repair"
+      ))
+      ) +
   default_theme(base_size = 12) +
   ylim(0, NA) +
   labs(
@@ -364,6 +371,9 @@ p <- lu.exps |>
   mutate(time = as.numeric(end_ts - start_ts, units = "secs")) |>
   ggplot(aes(x = factor(nodes), y = time)) +
   default_theme(base_size = 12) +
+  theme(
+    plot.margin = unit(c(0.5, 0, 0, 0), "cm")
+  ) +
   ylim(0, NA) +
   geom_point(size = 3) +
   labs(
@@ -440,7 +450,7 @@ ggsave("figures/lu_facet.pdf", width = 6, height = 5)
 
 #+RESULTS:
 
-**** Facet view
+**** Facet view no outlier
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 lu.result |>
   filter(Active_Power < 2000) |>
