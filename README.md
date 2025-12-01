@@ -8,9 +8,6 @@ This project is developed as part of a university course and focuses on performi
 - CPU measurements
 	- Application: LU factorization
 	- Stress 
-- GPU measurements (stage 3 maybe?)
-	- Application?
-	- Stress?
 
 We selected the machines in the poti partition as computational object, since all the machines have the same technical specification. We might do additional measurements using the tupi partition. 
 
@@ -22,22 +19,6 @@ We selected the machines in the poti partition as computational object, since al
 |tupi2 | Intel(R) Xeon(R) E5-2620 v4, 2.10 GHz, 16 threads, 8 cores | 224 GB DDR4 | NVIDIA GeForce RTX 4090 | 3.6 TB HDD, 894.3 GB SSD, 223.6 GB SSD | ASUSTeK COMPUTER INC. X99-DELUXE II |
 |tupi1 | Intel(R) Xeon(R) E5-2620 v4, 2.10 GHz, 16 threads, 8 cores | 256 GB DDR4 | NVIDIA GeForce RTX 4090 | 447.1 GB SSD, 1.8 TB SSD | ASUSTeK COMPUTER INC. X99-A II |
 
-## CPU measurements (stage 2)
-
-Response variable (outcome of the experiment):
-- Energy consumption (kWh)
-
-Factors and levels (parameters affecting the response and their values):
-- Machines in use: 1, 2, 3, 4, 5
-- CPU workload: LU factorization matrix size????? 3 levels?
-
-Replication: 3 times?? 5 times??
-
-Experimental design:
-- Run each level of CPU workload for each level of machines in use once, see if we can capture the energy consumption of the small workloads
-- Cross out some factor-level combinations
-- Run the experiment a few times, see if we have significant variation in the measurements, decide the replication number
-- Run the experiment with the desired replication
 
 ## Energy measurement script
 
@@ -66,17 +47,16 @@ To fetch the measurement data from the front, you can use scp in your local mach
 scp username@gppd-hpc.inf.ufrgs.br:/home/users/username/energy_monitor_<PDU_number>.csv /home/username/
 ```
 
-## Data analysis notebook
+## Data analysis jupiter notebook
 
-TODO traduzir
-instalar o python uv (pra linux)
+
+Install python uv:
 
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-criar o ambiente virtual pra rodar o notebook (no diretório do trabs) e instalar as dependencias descritas no `requirements.txt` 
-TODO tirar as dependencias que não precisa mais (ou não, é muita coisa)
+Criate the virtual environment to run the notebook (in this directory) and install the dependencies in `requirements.txt` 
 
 ```
 cd CMP223-EnergyMeasurements/
@@ -84,7 +64,7 @@ uv venv
 uv pip install -r requirements.txt
 ``` 
 
-rodar o ambiente, rodar o notebook
+Run the environment, run the notebobok
 
 ```
 source .venv/bin/activate

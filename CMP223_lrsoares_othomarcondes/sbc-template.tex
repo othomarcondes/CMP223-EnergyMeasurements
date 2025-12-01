@@ -1,0 +1,265 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}  
+
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{makecell}
+\usepackage{tabularx}
+\newcolumntype{a}{X}
+\newcolumntype{b}{>{\hsize=.5\hsize}X}
+\newcolumntype{c}{>{\hsize=.3\hsize}X}
+     
+\sloppy
+
+\title{Medições de Consumo de Energia em Arquiteturas HPC}
+
+\author{Laura R. Soares\inst{1},
+        Otho José Sirtoli Marcondes\inst{2}}
+
+
+
+\address{Instituto de Informática -- Universidade Federal do Rio Grande do Sul (UFRGS)\\
+Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
+\email{lrsoares@inf.ufrgs.br, otho.marcondes@inf.ufrgs.br}}  
+
+\begin{document} 
+
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+     
+% O consumo de energia de \textit{datacenters} apenas nos Estados Unidos está projetado para consumir de 6,7 a 12\% da matriz energética do país em 2028, o que representa de 325 a 580 TWh \cite{shehabi20242024}. Partindo dessa contextualização, o objetivo do trabalho é investigar como é realizada a medição do consumo de energia em um contexto de Computação de Alto Desempenho \cite{orgerie2020understanding}, com foco na comunicação entre os nós da rede. Para tanto, será feito um estudo da metodologia usada em outros trabalhos de estado-da-arte no tópico de medições energéticas \cite{haudebourg2017energy, cornea2014studying, orgerie2017simulation}. 
+%Para os experimentos, será utilizado o benchmark MPI (Linkpack HPL) \cite{petitet2004hpl} executando na plataforma Grid5000\footnote{\url{https://www.grid5000.fr/}} para averiguar quais informações de consumo de energia podem ser obtidas nessas configurações. O objetivo final é obter conhecimento prático sobre o funcionamento desses mecanismos de medição. Como resultado, espera-se conhecer o conjunto de ferramentas (de software e hardware) que permitam obter medidas sobre o consumo de recursos energéticos em arquiteturas HPC, com possibilidade de reprodução dentro da estrutura do GPPD. Essa estrutura pode possibilitar trabalhos futuros sobre análises de medições experimentais de energia, o que, por sua vez, permitiria o desenvolvimento de sistemas mais robustos que não tenham necessidade de provisionamento excessivo contribuindo para aplicações mais sustentáveis.
+
+\section{Introdução}
+
+A atividade humana contribui fortemente para o aumento da temperatura global por meio da emissão de Gases de Efeito Estufa (GHG, do inglês \textit{Greenhouse Gases}), dos quais o dióxido de carbono (CO2) é o mais comum. A principal fonte de geração de CO2 é a queima de combustíveis fósseis (carvão, petróleo e gás natural). Em 2023, a concentração de CO2 na atmosfera aumentou cerca de 50\% em relação aos níveis pré-industriais~\cite{gcb2023}. Emissões net-zero (equilibrar a emissão de CO2 removendo a mesma quantidade da atmosfera), apesar de serem uma abordagem popular para combater as mudanças climáticas, provavelmente vão levar o clima a um estado diferente do que seria se evitadas completamente as emissões vindas de combustíveis fósseis~\cite{nature2023}. Portanto, é crucial que todas as áreas da atividade humana reavaliem suas necessidades energéticas e incentivem o uso de fontes de energia limpas e livres de CO2 em sua cadeia produtiva.
+
+Apesar do cenário crítico na esfera ambiental, a demanda por energia está maior do que nunca. Estima-se que \textit{data centers} vão consumir 1,5\% de toda energia produzida no mundo em 2023, estimulados pelos recentes desdobramentos na área de Inteligência Artificial (AI) especificamente em Grandes Modelos de Linguagem (LLM, do inglês \textit{Large Language Models})~\cite{nature2025}. Em prognósticos de curto prazo, até 2026 a estimativa é que o gasto energético atinga o dobro do valor de 2022--ano em que o consumo do setor foi de 460 terrawatts-hora (TWh)~\cite{fapesp2025}. Apenas nos Estados Unidos, é esperado que consumo total de energia elétrica por \textit{data centers} alcance até 12\% do consumo total do país até 2028, totalizando 580 TWh no ano~\cite{shehabi2024}. É crucial que \textit{data centers} e demais infraestruturas apresentem ferramentas robustas de monitoramento energético para garantir que suas demandas por eletricidade sejam condizentes com sua carga de trabalho e não resultem em desperdício.
+
+Dentro do ecossistema de parques computacionais complexos, qualquer otimização de performance energética depende de ferramentas de monitoramento capazes de informar o custo associado às tarefas--seja em nível de aplicação, do nó, do cluster, e até mesmo do data center como um todo. O MareNostrum5 por exemplo, do Centro de Supercomputação de Barcelona (BSC)~\cite{banchelli2025}, usa o framework EAR (Energy Aware Runtime) para fazer o monitoramento preciso do consumo de componentes e tarefas. O EAR, framework de código aberto\footnote{https://github.com/eas4dc/EAR}, utiliza uma combinação de componentes de hardware fornecidos por cada fabricante--como por exemplo, contadores RAPL, IPMI, Perf, monitores da nvideia, entre outros~\cite{ear2020}--para monitoramento e também para possibilitar otimizações energéticas. O framework é particularmente relevante na hora de estimar o impacto da tecnologia de resfriamento líquido usada no MareNostrum, necessária devido aos nós computacionais densamente compactados no ambiente. 
+
+Esse trabalho busca trazer a discussão sobre monitoramento e eficiência energética para o Parque Computacional de Alto Desempenho (PCAD) do Grupo de Processamento Paralelo e Distribuído (GPPD) do Instituto de Informática da UFRGS. A proposta investiga quais métricas estão disponíveis para monitoramento e investiga os detalhes de sua viabilização. Através de réguas programáveis de distribuição de energia (PDUs, do inglês power distribution units) e protocolos de gerenciamento de redes como SNMP foram feitas algumas medições de consumo de energia de experimentos de HPC. Essas medições serviram como prova de conceito para fundamentar a necessidade de uma estrutura de observabilidade dentro do PCAD, e também para definir os próximos passos para sua implementação. Essa estrutura pretende possibilitar trabalhos futuros sobre análises de medições experimentais de energia, o que, por sua vez, permite o desenvolvimento de sistemas mais robustos que não tenham necessidade de provisionamento excessivo--contribuindo assim para aplicações mais sustentáveis.
+
+
+Esse artigo está dividido da seguinte forma: a Seção \ref{sec:related} traz informações sobre o estado-da-arte em ferramentas de monitoramento de energia em outros parques computacionais e supercomputadores. A Seção \ref{sec:background} detalha os protocolos e métricas usados nas medições, além da aplicação escolhida para as execuções. A Seção \ref{sec:methodology} explica nossa abordagem e como foram conduzidos os experimentos deste trabalho. As medições feitas no ambiente do PCAD estão na Seção \ref{sec:results} e, por fim, a Seção \ref{sec:conslusion} conclui o trabalho. 
+
+\section{Trabalhos Relacionados} \label{sec:related}
+
+W.I.P.
+
+\section{Background} \label{sec:background}
+
+As PDUs programáveis abastecendo os \textit{racks} no PCAD fornecem métricas de energia como corrente (V), voltagem (A), frequência (Hz), energia acumulada (kWh), e potência ativa (W), além de sensores de umidade, temperatura, entre outros. Essas métricas podem ser acessadas através de \textit{requests} SNMP de dentro da rede interna do PCAD. Essa seção aborda o básico sobre o protocolo SNMP, a fatoração LU (aplicação escolhida para as execuções) e as métricas de energia usadas nas medições.
+
+\subsection{SNMP: \textit{Simple Network Management Protocol}}
+
+O SNMP (em português, Protocolo Simples de Gerência de Redes) é um dos protocolos mais usados para monitoramento e gerenciamento de equipamentos como roteadores, \textit{switches}, servidores, entre outros. O protocolo possui três versões em utilização (SNMPv1, SNMPv2c e SNMPv3). O padrão definido pela IETF~\cite{rfc1157} inclui também as estruturas de dados usadas pelo protocolo.
+
+Tipicamente, o ambiente de gerenciamento é composto por um ou mais dispositivos sendo monitorados (chamados de agentes) e o dispositivo gerente fazendo o monitoramento. As \textit{requests} SNMP, por exemplo GET e SET, são feitas do gerente para o agente. Esses \textit{requests} se baseiam em estruturas em forma de árvore chamadas de MIBs (do inglês \textit{management information base}, ou base de informações de gerência) em que cada folha armazena um OID (identificadores de objeto). Cada OID corresponde a uma informação de gerenciamento que pode ser lida ou configurada através de \textit{requests} SNMP.
+
+As MIBs contendo as informações de quais dados podem ser fornecidos via SNMP para o gerente podem vir de diversas fontes, como entidades padronizadoras e fabricantes de equipamentos. A sintaxe utilizada está definida no RFC 2578~\cite{rfc2578}. Geralmente, o equipamento a ser monitorado é embarcado pelo fabricante com as MIBs necessárias já instaladas. As mesmas informações precisam estar presentes no gerente. Por serem estruturas complexas, diversos gerentes SNMP integram "MIB \textit{browsers}" para facilitar a visualização das informações. 
+
+
+\subsection{Fatoração LU}
+Neste trabalho, utilizamos a implementação da fatoração LU do Chameleon \cite{chameleon}. Como mostrado na Figura~\ref{fig:LU-factor}, a fatoração LU de uma dada matriz $A$ é definida como $A=LU$, onde $L$ é uma matriz triangular inferior e $U$ é uma matriz triangular superior. O algoritmo de LU se baseia em três diferentes kernels do LAPACK: \verb|DGTRF-NOPIV|, \verb|DTRSM| e \verb|DGEMM|. Essa aplicação tende a ser dominada por kernels \verb|DGEMM| quando $N$ é grande, o que torna obrigatório que as submatrizes estejam bem distribuídas entre os nós.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.8\textwidth]{figures/LU-factor.png}
+\caption{Algoritmo LU (esquerda) sem pivoteamento, e regiões de A que são atualizada na iteração k (direita). \cite{nesi2020communication}}
+\label{fig:LU-factor}
+\end{figure}
+
+% de repente dá pra aproveitar alguma coisa do seu trabs do semestre passado pra cá @ Otho
+
+
+\subsection{Métricas de Consumo de Energia}
+
+W.I.P.
+
+\section{Metodologia} \label{sec:methodology}
+
+Nosso estudo tinha como foco a observação do padrão energético de dois clusters do PCAD, sendo eles: \verb|Poti| e \verb|Tupi|. Entretanto, devido à problemas nas máquinas da partição \verb|Tupi| e alta demanda da mesma por outros usuários foi feita a escolha de observar apenas a partição \verb|Poti|. Os experimentos foram realizados utilizando o pacote Stress variando os parâmetros de: CPU, IO e memória. Além disso, foi realizado outro experimento utilizando a  implementação da fatoração LU do pacote Chameleon \cite{chameleon} e StarPU-MPI\cite{augonnet2012starpu}. A fatoração LU é uma aplicação de álgebra linear comumente utilizada como carga de trabalho para clusters em diversos campos de pesquisa \cite{lu2023}, sendo assim uma escolha ideal para nossa investigação. 
+
+As medições de consumo energético realizadas no PCAD foram feitas usando um \textit{script} \textit{bash} executando comandos SNMP GET. Essas medições foram guardadas em arquivos do tipo CSV, sendo feito o tratamento dos mesmos após as execuções para manter apenas os tempos referentes aos nossos experimentos.
+
+\subsection{Configuração de Hardware e Software}
+
+As especificações da partição \verb|Poti|, na qual os experimentos foram conduzidos, pode ser observado na Tabela \ref{tab:hardPoti}. A partição \verb|Poti| contém 5 nós, utilizando uma rede 1-Gigabit para comunicação. No quesito software, foi utilizado o gerenciador de pacote Guix para manter as versões dos pacotes estáveis. Para a execução das aplicações, foram utilizados os pacotes Chameleon 1.3.0, StarPU 1.4.9, OpenMPI 4 e Stress 1.0.7. Além disso, a frequência dos núcleos do processador foi delimitada em 3.4GHz e utilizando apenas os P-cores no caso da fatoração LU por intermédio de variáveis de ambiente do StarPU. 
+
+\begin{table} [htb]
+    \centering
+    \caption{Especificação do hardware da partição Poti.}
+    \label{tab:hardPoti}
+    \begin{tabularx}{\textwidth}{c|X|b}
+        \hline
+        \textbf{Nome} & \textbf{CPU} & \textbf{Acelerador} \\
+        \hline
+        poti[1,2,3,4,5]	& Intel(R) Core(TM) i7-14700KF, 3.40 GHz, 28 threads, 20 cores & NVIDIA GeForce RTX 4070 \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+
+\subsection{Design dos Experimentos}
+
+A criação dos projetos dos experimentos foi feita pelo pacote da linguagem R \verb|DoE.base|, sendo o resultado desse projeto salvo em seu respectivo arquivo CSV. Posteriormente, esse arquivo gerado é lido pelo \textit{script} dos experimentos para a realização do mesmo.
+
+\subsubsection{Stress}
+Para os experimentos utilizando o pacote Stress, foram feitas execuções variando o número de nós e os seguintes parâmetros de carga da aplicação: CPU, IO e memória. O tempo para cada uma dessas execuções foi fixado em cinco minutos. Para cada configuração foram realizadas três repetições devido à alta demanda da partição. Uma amostra de algumas das parametrizações dos experimentos pode ser observada na Tabela \ref{tab:doeStress}.
+
+\begin{table} [htb]
+    \centering
+    \caption{Amostra de design dos experimentos de Stress.}
+    \label{tab:doeStress}
+    \begin{tabularx}{\textwidth}{c|c|c|c|b}
+        \hline
+        \textbf{Tempo} & \textbf{CPU} & \textbf{IO} & \textbf{Memória} & \textbf{Nós} \\
+        \hline
+        5min    & 24 & 0 & 0 & 1 \\
+        \hline
+        5min    & 8 & 8 & 8 & 2 \\
+        \hline
+        5min    & 0 & 12 & 12 & 5 \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsubsection{Fatoração LU}
+
+Para os experimentos utilizando a fatoração LU, foi utilizada uma matriz de tamanho 60000×60000, tamanho de bloco 100, variando apenas o número de nós. Para cada configuração foram realizadas três repetições devido à alta demanda da partição.
+
+\section{Resultados} \label{sec:results}
+
+Nós detalhamos os resultados acerca das medições de consumo de energia na partição \verb|Poti| em seu estado ocioso, executando a aplicação Stress e por fim executando a fatoração LU. Para as aplicações, foram analisados os impactos do número de nós e diferentes configurações na consumo energético da partição.
+
+\subsection{Partição ociosa}
+
+A Figura \ref{fig:idle_instant} apresenta a potência ativa em função do tempo para partição \verb|Poti| enquanto está ociosa. É possível observar que apesar de haver alguns picos que se destacam, majoritariamente a potência ativa fica em torno de $320W$, o que demonstra pouca variabilidade enquanto as máquinas estão ociosas.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.6\textwidth]{figures/idle_instant.pdf}
+\caption{Potência ativa da partição Poti em estado ocioso.}
+\label{fig:idle_instant}
+\end{figure}
+
+A Figura \ref{fig:idle_cumulative} demonstra a energia cumulativa em função do tempo para a partição \verb|Poti| em estado ocioso, em intervalos de uma hora. Como pode ser visualizado, o consumo de energia se mantém linear com o passar, estando de acordo com o gráfico da Figura \ref{fig:idle_instant} que não demonstrou grandes variações na potência ativa ao longo do tempo.
+
+%\textbf{COLOCAR CÁLCULO DE CUSTOS COMO NOS SLIDES???}
+% lrs aquela explicação de potencia vs energia iria no background, na seção 3.3
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.6\textwidth]{figures/idle_cumulative.pdf}
+\caption{Energia cumulativa da partição Poti ociosa.}
+\label{fig:idle_cumulative}
+\end{figure}
+
+
+A Figura \ref{fig:idle_cumulative_boxplot} mostra um \textit{boxplot} da energia da partição ociosa dividida em intervalos de tempo de uma hora. É possível observar que há pouca variação entre os intervalos de tempo, tendo a energia cumulativa concentrada entre $325Wh$ e $326Wh$. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.6\textwidth]{figures/idle_cumulative_boxplot.pdf}
+\caption{Valores do consumo de energia em idle em intervalos de uma hora.}
+\label{fig:idle_cumulative_boxplot}
+\end{figure}
+
+\subsection{Stress}
+O experimento de Stress foi feito com 3 replicações, uma delas no dia 25 de setembro de 2025 e outra no dia 28 de setembro de 2025. A Figura \ref{fig:stress} apresenta a potência ativa em função do tempo para as execuções utilizando a aplicação de Stress. Apesar desse experimento ter sido realizado em duas partes (datas diferentes), para essa visualização o tempo final da última execução do primeiro experimento foi concatenado com o tempo inicial da primeira execução do segundo experimento. Como pode ser observado, o consumo mínimo dos experimentos teve uma diferença significativa para execuções em dias diferentes. Tal observação pode ser explicada por causa de uma ventoinha de CPU da máquina \verb|poti2| que apresentou defeito até o dia 27 de setembro de 2025. Após sanada a irregularidade, é possível perceber que mesmo sob as mesmas cargas de trabalho, a potência ativa mínima apresentou uma redução de $\approx 20\%$. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.8\textwidth]{figures/stress.pdf}
+\caption{Potência ativa conforme o tempo dos experimentos da aplicação Stress}
+\label{fig:stress}
+\end{figure}
+
+A Figura \ref{fig:stress_energ} demonstra a energia em função do número de nós para as diferentes configurações de Stress: CPU, IO e memória. Como pode ser visualizado, a carga de IO (entrada/saída) apresenta o menor consumo de energia em relação às demais aplicações. Tal comportamento pode ser explicado devido à CPU nesse tipo de carga ficar em estado de espera por boa parte da execução, o que diminui o consumo energético.  
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.6\textwidth]{figures/stress_energ.pdf}
+\caption{Consumo de energia da aplicação Stress em relação ao número de nós.}
+\label{fig:stress_energ}
+\end{figure}
+
+A Figura \ref{fig:stress_energ_facet} apresenta a energia em função dos nós novamente, entretanto separadas com base nas diferentes cargas de Stress e nas execuções realizadas antes e após o conserto da ventoinha da CPU da \verb|poti2|. Assim, pode ser observado o impacto do defeito da ventoinha nas execuções, nas qual a execução antes do reparo apresenta um consumo energético maior em relação as outras duas após o reparo.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.6\textwidth]{figures/stress_energ_facet.pdf}
+\caption{Comparação do consumo de energia da aplicação Stress antes e após o reparo.}
+\label{fig:stress_energ_facet}
+\end{figure}
+
+\subsection{Fatoração LU}
+
+A Figura \ref{fig:lu_times} mostra os tempos de execução da aplicação de uma matriz quadrada de 60000 em função do número de nós. Pode ser observado que há uma queda de $\approx 800s$ entre a execução de um único nó em comparação aos demais números de nós. Essa diferença de um nó para dois nós pode ser explicada pela presença do paralelismo, entretanto, as execuções com números maiores de nós apresentaram resultados aquém do esperado. Uma possível explicação pode ser o aumento da comunicação entre os nós que sobrecarregou a rede, configuração de distribuição de dados ineficiente ou tamanho pequeno do problema para um número maior de nós.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.6\textwidth]{figures/lu_times.pdf}
+\caption{Comparação do tempo de execução da Fatoração LU.}
+\label{fig:lu_times}
+\end{figure}
+
+A Figura \ref{fig:lu} apresenta a potência ativa em função do tempo para todas as execuções da aplicação. Como pode ser visualizado, há um pico da potência ativa durante as execuções. Acreditamos que seja possivelmente um erro de medição da PDU ou algum comportamento inesperado da partição durante essa execução. Como não é possível ser feita a medição de energia por nó e não foram coletados rastros durante as execuções, não podemos afirmar com certeza sobre o motivo de tal comportamento. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.6\textwidth]{figures/lu.pdf}
+\caption{Potência ativa dos experimentos de fatoração LU.}
+\label{fig:lu}
+\end{figure}
+
+% GRAFICO QUE ACHAMOS QUE ESTA ERRADO
+% \begin{figure}[ht]
+% \centering
+% \includegraphics[width=.6\textwidth]{figures/lu_energ.pdf}
+% \caption{Comparação do consumo de energia da fatoração LU.}
+% \label{fig:lu_energ}
+% \end{figure}
+
+A Figura \ref{fig:lu_facet} apresenta a potência ativa em função do tempo de execução das execuções, organizadas em facetas relativas ao número de nós utilizados. Como pode ser observado, o outlier com o pico de potência ativa foi observado em uma execução com três nós, destoando do comportamento das demais execuções com a mesma configuração. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.8\textwidth]{figures/lu_facet.pdf}
+\caption{Potência ativa dos experimentos de fatoração LU por número de nós.}
+\label{fig:lu_facet}
+\end{figure}
+
+A Figura \ref{fig:lu_facet_no_out} apresenta o mesmo formato da Figura \ref{fig:lu_facet}, entretanto com a retirada do outlier para melhor visualização do comportamento das execuções restantes. É possível visualizar que apesar das execuções com apenas um único nó apresentarem uma potência ativa mais constante e baixa em relação às execuções com três nós ou mais, elas possuem um tempo de execução mais extenso. Assim, não se pode confirmar que elas possuem um consumo de energia mais baixo em relação às outras com base nesse gráfico.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.8\textwidth]{figures/lu_facet_no_out.pdf}
+\caption{Potência ativa dos experimentos de fatoração LU por número de nós (sem outlier).}
+\label{fig:lu_facet_no_out}
+\end{figure}
+
+Os exemplos de medições dessa seção demonstram que é possível fazer a captura do perfil de consumo energético durante experimentos de HPC, mas também mostram que mudanças são necessárias na topologia elétrica do PCAD para facilitar medições de energia no futuro. Por exemplo, cada partição possui uma PDU própria ou utilizar um Wattmeter que possibilite a medição de energia por tomada, alocar os \textit{switches} em uma régua própria, assim como fazer a separação dos demais periféricos (como monitores, \textit{kvm switches}, entre outros) também pode reduzir a geração de interferência durante as medições de energia, o que facilitaria a correlação das características do perfil de consumo energético com as tarefas do experimento. 
+
+
+\section{Considerações Finais} \label{sec:conslusion}
+
+O aumento da demanda global por energia invariavelmente leva ao aumento das emissões de CO2 causadas pela queima de combustíveis fósseis, dado que apenas uma pequena parcela da energia produzida no mundo vem de fontes renováveis. Projeções mostram que o consumo de energia por data centers tende a crescer e ocupar uma parcela cada vez maior da matriz energética dos países. Portanto, é vital que data centers e demais infraestruturas de TI de larga escala tenham meios de gerenciar e otimizar suas demandas energéticas. 
+
+Esse trabalho utilizou PDUs gerenciáveis para investigar a possibilidade de realizar medições de energia no PCAD do Instituto de Informática da UFRGS. Os resultados mostram que os experimentos geram perfis de consumo energético distintos que podem ser correlacionados com tarefas, e que uma ferramenta de monitoramento tem potencial de apontar otimizações no consumo de energia do parque. Como pode ser visto em nossos resultados, a falha na ventoinha da CPU de uma das máquinas produziu um aumento no consumo energético da partição \verb|Poti|, o que poderia ter sido utilizado para identificação do problema de forma mais ágil. Esses resultados também argumentam fortemente em favor do desenvolvimento de \textit{frameworks} de observabilidade utilizando, por exemplo, ferramentas de estado-da-arte como Grafana. Esses \textit{frameworks} podem incorporar não só medições de energia como demais monitores de uso de CPU, memória, rede, entre outros. 
+
+O desenvolvimento de ferramentas de observabilidade é por si só uma contribuição científica relevante. Além disso, o uso contínuo dessas ferramentas uma vez disponíveis durante a realização de experimentos no PCAD iria potencializar a relevância dos trabalhos futuros produzidos pelo grupo, principalmente no que diz respeito ao consumo de energia por arquiteturas de HPC.
+
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}
