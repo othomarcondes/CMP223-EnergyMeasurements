@@ -453,7 +453,7 @@ ggsave("figures/lu_facet.pdf", width = 6, height = 5)
 **** Facet view no outlier
 #+begin_src R :results output :session *R* :exports both :noweb yes :colnames yes
 lu.result |>
-  filter(Active_Power < 2000) |>
+  filter(order != "lu_factor_poti_60000_3_GPU0_9") |>
   arrange(idx, Time) |>
   group_by(idx) |>
   mutate(
